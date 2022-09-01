@@ -1,0 +1,146 @@
+.chatRoom {
+    display: flex;
+    flex-direction: column;
+    margin-top: 55px;
+    padding: 10px;
+    width: 100%;
+}
+
+.topAvatar{
+    height: 25px !important;
+    width: 25px !important;
+    margin-left: 15px;
+}
+
+.roomName{
+    margin-left: 7px;   
+}
+
+/* .chatRoom{
+    display: flex;
+    flex-direction: column;
+    user-select: none !important;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-user-select:none !important;
+} */
+
+.chatroom__top {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+/* background-color: #fff !important; */
+height: 50px;
+box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.1);
+}
+
+.arrowBack {
+    color: gray;
+    margin-left: 10px;
+    cursor: pointer;
+}
+/* 
+.isLoading {
+    position: relative;
+    display: flex ;
+    place-items: center ;
+    justify-content: center ;
+    align-items: center ;
+} */
+
+
+/*  */
+
+.chatroom__footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #e8eff7;
+    width: 100%;
+    padding: 7px ;
+   min-height:50px;
+   justify-content: center;
+    box-shadow: 0px 1px 3px -5px rgba(0, 0, 0, 0.3),
+    -1px -1px 2px -1px rgba(0, 0, 0, 0.2);
+}
+
+.chatroom__form {
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
+    /* flex: 1; */
+}
+
+.chatroom__form form{
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+    flex: 0.95;
+    margin-left: 10px;
+    align-items: center;
+    /* padding: 11px; */
+
+}
+
+.chatroom__textarea {
+    position: relative;
+    display: flex;
+    resize: none;
+    width: 100% !important;
+    overflow-y: scroll;
+    -moz-box-direction: normal;
+    font-size: 16px;
+    background-color: #fff;
+    border: none;
+    height: 100%;
+    padding: 11px;
+    border-radius: 20px;
+    caret-color: rgb(29, 155, 240);
+    outline-width: 0;
+}
+
+.chatroom__textarea::placeholder {
+    color: rgb(87, 104, 112);
+}
+
+.chatroom__textarea:focus-visible {
+    outline-offset: 0px;
+    outline: none;
+  }
+  
+.postDetailsDark .chatroom__textarea {
+    background-color: #313130;
+    color: #fff;
+}
+
+.footerBotmLeft {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.footerCamera{
+    font-size: 26px;
+    margin: 0 5px;
+    color: rgb(87, 104, 112);
+}
+
+.sendButton {
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+}
+
+.sendIcon{
+    font-size: 26px !important;
+}

@@ -1,0 +1,82 @@
+.mentorCard {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+    margin: 10px 0;
+    user-select: none !important;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-user-select:none !important;
+}
+
+.image__wrapper{
+    height: 230px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 15px;
+
+}
+
+
+.title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.thread__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thread {
+    display: flex;
+    margin: 15px 0;
+    border: none;
+    height: 5px;
+    width: 100%;
+
+    border-radius: 10px;
+    background-color:  #a5219e;
+}
+
+.card__bottom {
+    display: flex;
+    justify-content: space-between;
+margin-bottom: 10px;
+}
+
+.card__left, .card__right {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    height: 25px !important;
+    width: 25px !important;
+    margin-right: 7px;
+}
+
+.connectBtn {
+    /* #a5219e */
+    background-color: #a5219e !important;
+    color: white !important;
+    margin-left: 15px !important;
+    height: 30px !important;
+}

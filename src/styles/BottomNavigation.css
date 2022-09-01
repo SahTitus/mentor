@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+.btmNav {
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  margin: 0;
+  box-shadow: 0px 1px 3px -5px rgba(0, 0, 0, 0.3),
+    -1px -1px 2px -1px rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  z-index: 1000;
+  background-color: white;
+  height: 58px;
+  user-select: none;
+}
+
+.btmNavDark {
+  background-color: #242526;
+  color: #fff !important;
+  border-top: 1px solid rgb(27, 27, 27);
+  box-shadow: none;
+}
+
+.btmNav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.btmNav__option {
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  color: #576870;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 14px;
+  width: 100%;
+  flex-direction: column;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.btmNav__optionDark {
+  color: rgb(219, 219, 219) !important;
+}
+
+.btmNav__option.active {
+  /* color: #3145f7 !important; */
+  color: #a5219e !important;
+}
+
+.btmNav__optionDark.btmNav__option.active {
+  color: #a5219e !important;
+}
+
+
+/* .btmNav__optionDark > .navBtm__icon {
+
+} */
+
+.btmNav__option p {
+  opacity: 1;
+  font-size: 0.65rem !important;
+  transition: font-size 0.2s, opacity 0.2s;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  transition-delay: 0.1s;
+  margin-bottom: 6px;
+}
+
+.navBtm__icon {
+  width: 1em;
+  height: 1em;
+  font-size: 28px !important;
+  display: inline-block;
+  flex-shrink: 0;
+  user-select: none;
+  margin-top: 8px;
+  /* color: rgb(95, 95, 95) !important; */
+  
+
+}

@@ -1,0 +1,94 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    color: rgb(24, 23, 23);
+    padding: 5px 3px;
+}
+
+.signIn {
+    background-color: #a5219e !important;
+    color: #fff !important;
+    width: 95% !important;
+    border-radius: 5px !important;
+}
+
+.menu {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.notif__container {
+    margin-right: 10px !important;
+}
+
+.side__user {
+    display: flex;
+    align-self: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.side__avatar {
+    height: 35px !important;
+    width: 35px !important;
+    cursor: pointer;
+}
+
+.side__userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.side__userInfo p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.side__userInfo span {
+    font-size: 13px;
+}
+
+.drawer__listItem {
+    display: flex !important;
+    align-items: center !important;
+    color: rgb(92, 85, 85) !important ;
+}
+
+.drawer__listItem:hover {
+ background-color: #a5219e  !important;
+ color: #fff !important;
+}
+
+.drawer__listIcon{
+
+margin-right: 20px;
+}
+
+.drawer__listText {
+    margin-bottom: 3px;
+}
+
+.add__button {
+    background-color: #a5219e !important;
+    width: 95% !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+    margin-left: 2% !important;
+    margin-top: 5px !important;
+}
+
+.add__button:hover {
+    background-color: #4889eb !important;
+}
+
+
+.link {
+    text-decoration: none;
+}

@@ -1,0 +1,48 @@
+.topMentor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 10px;
+    width: 100% ;
+    border-radius: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    user-select: none !important;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -webkit-user-select:none !important;
+  }
+
+ .text {
+    z-index: 100;
+    padding: 10px;
+    background-color: rgb(242, 244, 247);
+    color: rgb(0, 0, 0);
+    border-radius: 10px 10px 0 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+  .name {
+    font-size: 17px;
+    margin-bottom: 5px;
+  }
+
+  .course {
+    font-size: 13px;
+    margin-bottom: 3px;
+    color: rgb(226, 43, 180);
+  }
+
+  .img__wrapper {
+display: flex;
+height: 250px;
+width: 230px;
+border-radius: 0 0 10px 10px;
+  }
+
+  .img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0 0 10px 10px ;
+  }
