@@ -1,0 +1,183 @@
+.createMentor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  align-items: center;
+  justify-content: center;
+}
+
+.createMentor__top {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #a5219e;
+  color: #fff !important;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 18px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.selectedImage {
+height: 200px;
+margin-top: -10px;
+}
+
+.cancelImage {
+  position: absolute;
+  left: 80px;
+  color: red !important;
+}
+
+.arrowBack {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.title {
+    margin-top: 90px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(218, 215, 215);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.select__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.imageIcon__wrapper {
+ border: 1px solid rgb(218, 215, 215) !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 10px !important;
+  padding: 13px !important;
+  margin: 10px 0 !important;
+}
+
+.reli__inputdiv {
+    display: flex;
+    align-items: center;
+    max-width: 200px !important;
+}
+
+.reli__inputwrapper {
+    flex: 1 !important;
+    min-width: 100px !important;
+}
+
+.reli__inputbox {
+    display: flex;
+    min-width: 100px !important;
+    flex:1 !important;
+}
+
+.date__input {
+max-width: 130px;
+}
+
+.edu_inputBox {
+    display: flex;
+    min-width: 100px !important;
+    flex:1 !important;
+}
+
+.edu_inputDiv {
+    display: flex;
+    min-width: 100px !important;
+    flex:1 !important;
+}
+
+.edu_inputWrapper {
+    display: flex;
+    min-width: 100px !important;
+    flex:1 !important;
+}
+
+.halve__inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.auth_input {
+  width: 100% !important;
+  display: flex;
+  flex: 1;
+}
+
+#auth_inputBox {
+  display: flex;
+  flex: 1;
+  width: 100% !important;
+  margin: 10px 0;
+}
+
+.password__inputs {
+    margin-right: 10px !important;
+}
+
+.showPassword {
+  position: absolute !important;
+  right: 20px;
+  z-index: 100;
+}
+
+.createBtn {
+  margin: 40px 0 !important;
+  background-color: #a5219e !important;
+  color: #fff !important;
+  width: 80% !important;
+}
+
+.disableBtn {
+  background-color: #795f77 !important;
+}
+
+@media screen and (max-width: 509px) {
+    .showPassword {
+        right:  170px;
+
+      }
+}
+
+@media screen and (min-width: 509px) {
+    .reli__inputdiv {
+        display: flex;
+        align-items: center;
+        /* max-width: 300px !important; */
+    }
+    
+    .reli__inputwrapper {
+        flex: 1 !important;
+        min-width: 270px !important;
+    }
+    
+    .reli__inputbox {
+        display: flex;
+        min-width: 300px !important;
+        flex:1 !important;
+    }
+    
+    .date__input {
+    max-width: 330px;
+    }
+  }

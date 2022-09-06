@@ -1,10 +1,22 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMentors } from "../actions/mentors";
 import { Footer, HeroBanner, MentorCard, Navbar, TopMentor } from "../components";
 
 import styles from "../styles/Home.module.css";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const { mentors, isLoading, error} = useSelector((state) => state.mentors);
+  // const {user } = useSelector((state) => state.auth);
+  const feeds = mentors.slice().sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+
+  useEffect(() => {
+    dispatch(fetchMentors());
+  }, [dispatch]);
+
   return (
     <div className={styles.home}>
       <Navbar />
@@ -12,7 +24,7 @@ const Home = () => {
         <HeroBanner />
       </div>
       <div className={styles.topMentor__top}>
-          <h4>Top Mentor</h4>
+          <h4>Top Mentors</h4>
           <Button className={styles.seeMore}>See more</Button>
         </div>
       {/* <div className={styles.topMento}> */}
@@ -30,10 +42,10 @@ const Home = () => {
       {/* </div> */}
 
       <div className={styles.mentors}>
-        <MentorCard program='Personal Growth' name='Mr.Wow' image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_1z72UJD8ao06h83sT1Z5JisUmY4AIi_RQ&usqp=CAU'/>
-        <MentorCard program='Career Growth' name='Donald Smith' image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsAB7kXPhX4SwR_pQxa1Xtc16asVBvzQzUGA&usqp=CAU'/>
-        <MentorCard program='AXIOS' name='Walker Slim' image='https://cdn.ceoworld.biz/wp-content/uploads/2021/07/kevin-davis-1.jpg' />
-        <MentorCard program='Life Career' name='Jane Lin' image='https://static.wixstatic.com/media/49eacb_bf0e16d484714797ab5f7d0126ae55c9~mv2.jpg/v1/fill/w_450,h_450,al_c,q_90/49eacb_bf0e16d484714797ab5f7d0126ae55c9~mv2.jpg' />
+        {feeds.map(mentor => (
+                  <MentorCard key={mentor._id} program={mentor.fieldExp} name={mentor.fullName} image={mentor.image}/>
+        ))}
+       
          </div>
       <Footer />
     </div>

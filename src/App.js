@@ -7,6 +7,7 @@ import Chats from "./pages/Chats";
 import ChatRoom from "./pages/ChatRoom";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
+import CreateMentor from "./pages/CreateMentor";
 // import Dashboard from "./pages/Dashboard";
 // import Students from "./pages/Students";
 
@@ -34,8 +35,9 @@ function App() {
             <Route path="/" element={<Home />} />
              <Route path="/chats" element={<Chats />} />
              <Route path="/auth" element={<Auth />} />
+             <Route path="/addMentor" element={<CreateMentor />} />
              <Route path="/chatRoom" element={<ChatRoom />} />
-           <Route path="/profile" element={<Profile/>} />
+           <Route path="/profile" element={<Profile />} />
             {/* <Route path="/students" element={<Students />} /> */} 
           </Routes>
         </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://mentor-engine.vercel.app" });
 
 // const url = "http://localhost:5000"
 
@@ -15,13 +15,14 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPosts = (page) => API.get(`/posts`);
-export const fetchComments = (id) => API.get(`/comments/${id}`);
-export const fetchPost = (id) => API.get(`/posts/${id}`);
-export const createPost = (newPost) => API.post(`/posts`, newPost);
-export const deletePost = (id) => API.delete(`/posts/${id}`);
-export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const fetchMentors = () => API.get(`/mentors`);
+export const fetchMentor = (id) => API.get(`/mentors/${id}`);
+
+export const createMentor = (newMentor) => API.post(`/mentors`, newMentor);
+export const updateMentor = (id, updatedMentor) => API.patch(`/mentors/${id}`, updatedMentor);
+export const likeMentor = (id) => API.patch(`/mentors/${id}/likementor`);
+
+export const deleteMentor = (id) => API.delete(`/mentors/${id}`);
 
 export const signIn = (formData) => API.post(`/user/signin`, formData);
 export const signUp = (formData) => API.post(`/user/signup`, formData);

@@ -53,7 +53,7 @@ margin-right: 15px;
 .messageCardBox {
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 0px 10px 10px 10px;
     background-color: hsl(93, 35%, 94%);
     max-width: 90%;
     min-width: 190px;
@@ -63,6 +63,7 @@ margin-right: 15px;
 .userCard .messageCardBox {
     background-color: #0267ff;
     color: #fff;
+    border-radius: 10px 10px 0px 10px;
 }
 
 .messageCardDark .messageCardBox {

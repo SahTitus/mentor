@@ -9,6 +9,7 @@
     -moz-user-select:none;
     -ms-user-select:none;
     -webkit-user-select:none !important;
+    -webkit-tap-highlight-color: transparent !important;
 }
 
 .image__wrapper{

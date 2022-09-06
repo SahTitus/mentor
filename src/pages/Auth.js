@@ -31,7 +31,7 @@ const Auth = () => {
   console.log(formData);
 
   
-  const isSignup = true
+  const isSignup = false
 
   // const { darkMode } = useStateContex();
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-if (isSignup) {
+if (!isSignup) {
 dispatch(signup(formData, navigate))
 } else {
   dispatch(signin(formData, navigate))

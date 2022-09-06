@@ -119,6 +119,7 @@ const Navbar = () => {
           </div>
           <div className={styles.drawer__listText}>Log out</div>
         </ListItem>
+        <Link to='/addMentor' >
         <ListItem
           button
           className={`${styles.drawer__listItem} ${styles.add__button} `}
@@ -128,6 +129,7 @@ const Navbar = () => {
           </div>
           <div className={styles.drawer__listText}>Become a mentor</div>
         </ListItem>
+        </Link>
       </List>
     </Box>
   );
