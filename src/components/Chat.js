@@ -8,7 +8,7 @@ function Chat({ username, addNewChat, message, group, image, timestamp }) {
   const { darkMode } = false;
 
   return (
-    <Link to="/chatRoom">
+    <Link className={styles.link} to="/chatRoom">
       <div className={`${styles.chat} ${darkMode && styles.chatDark}`}>
         <Avatar className={styles.chat__avatar} src={""}>
           {username.charAt(0)}
@@ -17,10 +17,10 @@ function Chat({ username, addNewChat, message, group, image, timestamp }) {
           <div className={styles.chat__textInfo}>
             <div className={styles.chat__textInfoTop}>
               <div className={styles.chat__textInfoTop}>
-                <h4>{username}</h4>
+                <p>{username}</p>
              {group && <PeopleFill className={styles.peopleIcon}/>}
               </div>
-              <p className={styles.chat__timestamp}>{timestamp}</p>
+              <span className={styles.chat__timestamp}>{timestamp}</span>
             </div>
             <p className={styles.chat__message}>{message}</p>
           </div>

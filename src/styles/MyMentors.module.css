@@ -1,0 +1,10 @@
+.myMentors {
+    display: flex;
+    flex-direction: column;
+}
+
+.myMentors__container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}

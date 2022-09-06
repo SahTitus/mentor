@@ -1,3 +1,8 @@
+.link {
+    text-decoration: none;
+    color: #302630;
+}
+
 .chat {
     display: flex;
     align-items: center;
@@ -17,6 +22,7 @@
 
 a:link {
     text-decoration: none;
+    color: #94f516;
 }
 
 .chat__text {
@@ -47,8 +53,10 @@ a:link {
     align-items: center;
 }
 
-.chat__textInfoTop h4 {
+.chat__textInfoTop p {
     font-size: 16px;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .chatDark .chat__textInfoTop h4 {

@@ -49,7 +49,7 @@ const Footer = () => {
         <NavLink
           className={`btmNav__option ${darkMode && "btmNav__optionDark"}`}
           style={({ isActive }) => {}}
-          to={"/questions"}
+          to={"/mymentors"}
         >
           <Heart className="navBtm__icon" />
         </NavLink>
