@@ -1,10 +1,8 @@
 import {
   Add,
-  Group,
   Menu,
   NotificationsOutlined,
   Person,
-  QuestionMark,
 } from "@mui/icons-material";
 import { Avatar, IconButton, Button } from "@mui/material";
 import React, { useState } from "react";
@@ -14,8 +12,6 @@ import { Box, Divider, List, ListItem, Drawer } from "@mui/material";
 
 import { People, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
-import { useStateContex } from "../store/StateProvider";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth";
 import { logoutMentor } from "../redux/mentors";

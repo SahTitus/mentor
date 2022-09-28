@@ -22,19 +22,17 @@ const ChatRoom = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const mentorLocal = JSON.parse(localStorage.getItem("mentor"));
   const [focused, setFocused] = useState(false);
-  const { messages, } = useSelector((state) => state.messages);
-  const { room} = useSelector((state) => state.rooms);
+  const { messages } = useSelector((state) => state.messages);
+  const { room } = useSelector((state) => state.rooms);
   const { chatInfo, setChatInfo, recipientId } = useStateContex();
 
-  if (room._id) setChatInfo(room)
+  if (room._id) setChatInfo(room);
 
   const { darkMode, focus } = false;
- 
 
   useEffect(() => {
     dispatch(fetchMessages(roomId));
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-
   }, [roomId]);
 
   const scrollRef = useRef();
@@ -43,10 +41,10 @@ const ChatRoom = () => {
     const interval = setInterval(() => {
       dispatch(fetchMessages(roomId));
       scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 5000)
+    }, 5000);
 
-    dispatch(fetchRoom(roomId));    
-    return () => clearInterval(interval)
+    dispatch(fetchRoom(roomId));
+    return () => clearInterval(interval);
   }, []);
 
   //   const sortmessages = messages
@@ -58,12 +56,6 @@ const ChatRoom = () => {
 
   const messagesRef = useRef();
 
-  //   useEffect(() => {
-  //     if (!user) navigate("/auth");
-  //     // dispatch(fetchPost(id));
-  //     // dispatch(fetchmessages(id));
-  //   }, []);
-
   const handleChange = (e) => {
     setMessage(e.target.value);
   };
@@ -74,7 +66,7 @@ const ChatRoom = () => {
     senderId: user.result._id,
     mentorId: mentorLocal?._id,
     recipientId: recipientId,
-    senderName:  user?.result?.name,
+    senderName: user?.result?.name,
     roomDbId: chatInfo?._id,
   };
 
@@ -84,74 +76,66 @@ const ChatRoom = () => {
     setMessage("");
   };
 
-  //   if (isLoading)
-  //     return (
-  //       <div className={styles.isLoading}>
-  //         <Spinner />
-  //       </div>
-  //     );
-
-  // const receiverInfo =chatInfo?.users__profile?.find(
-  //   (profile) => profile !== user.result._id
-  // )
- 
-const receiverInfo=chatInfo?.users__profile?.map(pro => pro._id !== user.result._id ? pro : null )
-  const receiverName = receiverInfo?.map((rec) => rec?.mentorshipName || rec?.name) || chatInfo?.name
-  const receiverImg = receiverInfo?.map((rec) => rec?.mentorshipDp || rec?.image || chatInfo?.image)
-
-  
-
+  const receiverInfo = chatInfo?.users__profile?.map((pro) =>
+    pro._id !== user.result._id ? pro : null
+  );
+  const receiverName =
+    receiverInfo?.map((rec) => rec?.mentorshipName || rec?.name) ||
+    chatInfo?.name;
+  const receiverImg = receiverInfo?.map(
+    (rec) => rec?.mentorshipDp || rec?.image || chatInfo?.image
+  );
 
   return (
     <div className={`${styles.chatRoom} ${darkMode && styles.chatroomDark}`}>
       <div className={styles.chatroom__top}>
         <ArrowBack onClick={() => navigate(-1)} className={styles.arrowBack} />
-      {chatInfo.isGroup ? (  <>
-        <Avatar
-          className={styles.topAvatar}
-          src={chatInfo.image}
-          alt="Juaneme8"
-        >
-         {chatInfo?.roomName?.charAt(0)}
-
-        </Avatar>
-        <p className={styles.roomName}> { chatInfo?.roomName || receiverName}</p>
-      </>
+        {chatInfo.isGroup ? (
+          <>
+            <Avatar
+              className={styles.topAvatar}
+              src={chatInfo.image}
+              alt="Juaneme8"
+            >
+              {chatInfo?.roomName?.charAt(0)}
+            </Avatar>
+            <p className={styles.roomName}>
+              {" "}
+              {chatInfo?.roomName || receiverName}
+            </p>
+          </>
         ) : (
           <>
             <Avatar
-            className={styles.topAvatar}
-            src={receiverImg?.filter(ava => ava) || chatInfo?.image}
-            alt="Juaneme8"
-          >
-           {receiverInfo?.map((rec) => rec?.mentorshipName?.charAt(0) || rec?.name.charAt(0) ) || chatInfo?.name?.charAt(0) }
-  
-          </Avatar>
-          <p className={styles.roomName}> {receiverName}</p>
+              className={styles.topAvatar}
+              src={receiverImg?.filter((ava) => ava) || chatInfo?.image}
+              alt="Juaneme8"
+            >
+              {receiverInfo?.map(
+                (rec) => rec?.mentorshipName?.charAt(0) || rec?.name.charAt(0)
+              ) || chatInfo?.name?.charAt(0)}
+            </Avatar>
+            <p className={styles.roomName}> {receiverName}</p>
           </>
         )}
-        
-
       </div>
 
       <div className={styles.chatroom__body}>
         <div ref={messagesRef} />
         <div className={styles.messages}>
           {/* { {sortmessages?.map((message, i) => (  */}
-        {
-          messages?.map((message, i) => (
+          {messages?.map((message, i) => (
             <Message
-              key={i+message._id}
-            user
-            id={message._id}
-            senderId={message.senderId}
-            message={message.message}
-            timestamp={message.createdAt}
-            image={message.image}
-          creatorName={message.creatorName}
-          />
-          ))
-        }
+              key={i + message._id}
+              user
+              id={message._id}
+              senderId={message.senderId}
+              message={message.message}
+              timestamp={message.createdAt}
+              image={message.image}
+              creatorName={message.creatorName}
+            />
+          ))}
           {/* ))}  */}
         </div>
       </div>
@@ -159,7 +143,6 @@ const receiverInfo=chatInfo?.users__profile?.map(pro => pro._id !== user.result.
       <div
         className={`${styles.chatroom__footer} ${focused && styles.focused}`}
       >
-           
         <div className={`${styles.chatroom__form}`}>
           <div className={styles.footerBotmLeft}>
             <Camera className={styles.footerCamera} />
@@ -205,7 +188,6 @@ const receiverInfo=chatInfo?.users__profile?.map(pro => pro._id !== user.result.
           </div>
         )} */}
       </div>
- 
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles/App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Chats from "./pages/Chats";
 import ChatRoom from "./pages/ChatRoom";
