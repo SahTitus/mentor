@@ -22,6 +22,11 @@ const Home = () => {
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
  
+    const topMentors = mentors
+    ?.slice()
+    .sort(
+      (a, b) => parseFloat(b?.mentees.length) - parseFloat(a?.mentees.length)
+    );
 
   useEffect(() => {
     dispatch(fetchMentors());
@@ -49,31 +54,21 @@ const Home = () => {
       <div ref={scrollRef} />
       <div className={styles.topMentor__flex}>
       
-        <TopMentor
-          name="Daniel Kofi"
-          course="Parenting"
-          image="https://34co0u35pfyt37c0y0457xcu-wpengine.netdna-ssl.com/wp-content/uploads/2019/12/iStock-1091719880-1-1-1-1.jpg"
-        />
-        <TopMentor
-          name="Walahi Alhaji"
-          course="Self Development"
-          image="https://cdn.ceoworld.biz/wp-content/uploads/2021/07/kevin-davis-1.jpg"
-        />
-        <TopMentor
-          name="Fon Man"
-          course="Mentorship"
-          image="https://static.wixstatic.com/media/49eacb_bf0e16d484714797ab5f7d0126ae55c9~mv2.jpg/v1/fill/w_450,h_450,al_c,q_90/49eacb_bf0e16d484714797ab5f7d0126ae55c9~mv2.jpg"
-        />
-        <TopMentor
-          name="Kofi Kwadwo"
-          course="Science"
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsAB7kXPhX4SwR_pQxa1Xtc16asVBvzQzUGA&usqp=CAU"
-        />
-        <TopMentor
-          name="Yeli Jane"
-          course="Business Intelligence"
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_1z72UJD8ao06h83sT1Z5JisUmY4AIi_RQ&usqp=CAU"
-        />
+   {
+    topMentors?.slice(0, 5).map(mentor => (
+      <TopMentor
+      key={mentor._id	}
+      name={mentor.name}
+      course={mentor.fieldExp}
+      image={mentor.image}
+      myMentorId={mentor?._id}
+      id={mentor?.userId}
+      pendingMentees={mentor?.pendingMentees}
+      connectedMentees={mentor?.mentees}
+    />
+    ))
+   }
+        
       </div>
       {/* </div> */}
 

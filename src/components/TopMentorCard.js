@@ -111,7 +111,7 @@ const TopMentorCard = ({
             onClick={cancelRqt}
             className={`${styles.connectBtn} ${styles.cancelRequest}`}
           >
-            Cancel Request
+            Cancel 
           </Button>
         ) : (
           <>

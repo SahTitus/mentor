@@ -1,6 +1,7 @@
-import { ArrowBack } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
+import { ArrowBack, DeleteForever } from "@mui/icons-material";
+import { Box, CircularProgress, IconButton } from "@mui/material";
 import React, { useEffect } from "react";
+import { Trash2 } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchNotifications } from "../actions/notifications";
@@ -22,7 +23,7 @@ const Notifications = () => {
     ?.slice()
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
-  console.log(feeds);
+  console.log(feeds.length);
 
   const id = user?.result?._id;
   useEffect(() => {
@@ -36,20 +37,40 @@ const Notifications = () => {
           <ArrowBack />
         </IconButton>
       </div>
-      <h3>Notifications</h3>
-      <div className="">
-        {feeds.map((feed) => (
-          <Notification
-            name={feed.name}
-            image={feed?.image}
-            id={feed._id}
-            mentorId={feed.mentorId}
-            requestId={feed.requestId}
-            key={feed._id}
-            connected={feed.connected}
-          />
-        ))}
-      </div>
+
+      {!feeds.length > 0 ? (
+        <div className={styles.emptyNot}>
+          <DeleteForever className={styles.bin} />
+          <p>Your notification box is empty</p>
+        </div>
+      ) : (
+        <div className={`${styles.noti} ${error.message && styles.error}`}>
+          {isLoading ? (
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <>
+              <h3>Notifications</h3>
+              {error.message ? (
+                <p>Something went wrong</p>
+              ) : (
+                feeds.map((feed) => (
+                  <Notification
+                    name={feed.name}
+                    image={feed?.image}
+                    id={feed._id}
+                    mentorId={feed.mentorId}
+                    requestId={feed.requestId}
+                    key={feed._id}
+                    connected={feed.connected}
+                  />
+                ))
+              )}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

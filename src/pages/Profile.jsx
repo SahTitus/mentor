@@ -2,7 +2,13 @@ import { ArrowBack, Edit } from "@mui/icons-material";
 import React, { useEffect } from "react";
 import styles from "../styles/Profile.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, Box, CircularProgress, IconButton } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  CircularProgress,
+  IconButton,
+} from "@mui/material";
 import MenteeCard from "../components/MenteeCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, fetchUser } from "../actions/auth";
@@ -11,17 +17,14 @@ import { useStateContex } from "../store/StateProvider";
 
 const Profile = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const mentorLocal = JSON.parse(localStorage.getItem("mentor"));
-
   const user1 = JSON.parse(localStorage.getItem("profile"));
   const { setCurrentId } = useStateContex();
-
   const { mentors, mentor, isLoading } = useSelector((state) => state.mentors);
   const { users, user } = useSelector((state) => state.auth);
-
+  
   const menteesId = mentor?.mentees;
 
   const mentees = users?.filter((user) =>
@@ -98,8 +101,14 @@ const Profile = () => {
                 />
               ))
             )}
-            {myMentors?.length < 0 && (
-              <div className={styles.noData}>No Mentor found</div>
+            {!myMentors?.length > 0 && !isLoading && (
+              <div className={styles.noData}>
+                <p>No Mentor found</p>
+
+                <Link to="/">
+                  <Button className={styles.exploreBtn}>Explore mentors</Button>
+                </Link>
+              </div>
             )}
           </div>
         ) : (
@@ -120,9 +129,16 @@ const Profile = () => {
                 />
               ))
             )}
-            {mentees.length < 0 && (
+            {!mentees?.length > 0 && !isLoading && (
               <div className={styles.noData}>
-                {mentorLocal?._id ? "No Mentees" : "No Mentors"}{" "}
+                <p>No Mentee found</p>
+
+                <Button
+                  onClick={() => navigate(-1)}
+                  className={styles.exploreBtn}
+                >
+                  Go back
+                </Button>
               </div>
             )}
           </div>

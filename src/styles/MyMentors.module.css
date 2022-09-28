@@ -8,3 +8,22 @@
     flex-direction: column;
     margin-top: 70px;
 }
+
+.noData {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 40vh;
+}
+
+.exploreBtn {
+    background-color: #633485 !important;
+    color: #fff !important;
+    text-transform: capitalize !important;
+    margin-top: 15px !important;
+}
+
+.profile__arrowBack {
+color: #fff !important;
+}

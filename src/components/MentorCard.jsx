@@ -1,5 +1,5 @@
 import { Avatar, Button, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/MentorCard.module.css";
 import { MailOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -11,7 +11,6 @@ import {
   cancelRequest,
   acceptRequest,
 } from "../actions/notifications";
-import { useEffect } from "react";
 
 const MentorCard = ({
   name,
@@ -136,7 +135,7 @@ const MentorCard = ({
                   onClick={cancelRqt}
                   className={`${styles.connectBtn} ${styles.cancelRequest}`}
                 >
-                  Cancel Request
+                  Cancel
                 </Button>
               ) : (
                 <>

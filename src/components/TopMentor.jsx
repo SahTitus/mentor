@@ -1,7 +1,90 @@
-import React from "react";
+import { Mail, MailOutline } from "@mui/icons-material";
+import { Button, IconButton } from "@mui/material";
 import styles from "../styles/TopMentor.module.css";
+import React, { useState, useEffect } from "react";
 
-const TopMentor = ({name, course, image}) => {
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useStateContex } from "../store/StateProvider";
+import { PersonFill } from "react-bootstrap-icons";
+import {
+  sendRequest,
+  cancelRequest,
+  acceptRequest,
+} from "../actions/notifications";
+
+const TopMentor = ({
+  name,
+  id,
+  course,
+  image,
+  pendingMentees,
+  connectedMentees,
+  myMentorId,
+}) => {
+  const [pending, setPending] = useState(false);
+  const [connected, setConnected] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const mentor = JSON.parse(localStorage.getItem("mentor"));
+
+  const { setRecipientId, setChatInfo } = useStateContex();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    pendingMentees.map((penId) => {
+      if (penId === user?.result?._id) {
+        setPending(true);
+      } else {
+        setPending(false);
+      }
+      return null;
+    });
+
+    connectedMentees.map((penId) => {
+      if (penId === user?.result?._id) {
+        setConnected(true);
+      } else {
+        setConnected(false);
+      }
+      return null;
+    });
+  }, [connectedMentees, dispatch, pendingMentees, user?.result?._id]);
+
+  const requestData = {
+    requestId: user?.result?._id,
+    image: mentor?.image || user?.result?.image,
+    name: mentor?.name || user?.result?.name,
+    mentorId: myMentorId,
+    users: [id, user?.result?._id],
+    connected: false,
+  };
+
+  const connect = () => {
+    dispatch(sendRequest(requestData));
+    setPending(!pending);
+  };
+  const disConnect = () => {
+    dispatch(
+      acceptRequest({
+        mentorId: myMentorId,
+        menteeId: user?.result?._id,
+      })
+    );
+  };
+  const cancelRqt = () => {
+    setPending(!pending);
+    dispatch(
+      cancelRequest({ requestId: user?.result?._id, mentorId: myMentorId })
+    );
+  };
+
+  const openChatRoom = () => {
+    setRecipientId(id);
+    setChatInfo({ name, image, id });
+  };
+
   return (
     <div className={styles.topMentor}>
       <div className={styles.text}>
@@ -9,13 +92,49 @@ const TopMentor = ({name, course, image}) => {
         <p className={styles.name}>{name}</p>
         <p className={styles.course}>{course}</p>
       </div>
-<div className={styles.img__wrapper}>
-<img
-        className={styles.img}
-        src={image}
-        alt=""
-      />
-</div>
+      <div className={styles.img__wrapper}>
+        <img className={styles.img} src={image} alt="" />
+      </div>
+      {id === mentor?.userId ? (
+        <p>
+          <PersonFill className={styles.you}  />
+        </p>
+      ) : (
+        <div className={styles.buttons}>
+          <Link
+            to={`/chatroom/${id}-${user?.result?._id} `}
+            onClick={openChatRoom}
+          >
+            <IconButton>
+              {" "}
+              <MailOutline className={styles.mailBtn} />
+            </IconButton>
+          </Link>
+          {pending ? (
+            <Button
+              onClick={cancelRqt}
+              className={`${styles.connectBtn} ${styles.cancelRequest}`}
+            >
+              Cancel
+            </Button>
+          ) : (
+            <>
+              {connected ? (
+                <Button
+                  onClick={disConnect}
+                  className={`${styles.connectBtn} ${styles.connected}`}
+                >
+                  Disconnect
+                </Button>
+              ) : (
+                <Button onClick={connect} className={styles.connectBtn}>
+                  Connect
+                </Button>
+              )}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

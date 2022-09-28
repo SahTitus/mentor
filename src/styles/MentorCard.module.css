@@ -37,7 +37,6 @@
 .title {
     margin-top: 10px;
     font-size: 17px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .thread__wrapper {
@@ -69,8 +68,8 @@ margin-bottom: 10px;
 }
 
 .avatar {
-    height: 25px !important;
-    width: 25px !important;
+    height: 27px !important;
+    width: 27px !important;
     margin-right: 7px;
 }
 

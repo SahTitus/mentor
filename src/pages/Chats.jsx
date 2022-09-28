@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { fetchRooms } from "../actions/chatRooms";
 import { useDispatch, useSelector } from "react-redux";
 import { useStateContex } from "../store/StateProvider";
+import { Box, CircularProgress } from "@mui/material";
 
 const Chats = () => {
   const { darkMode } = false;
@@ -31,6 +32,18 @@ const Chats = () => {
 
       <div className={`chats__body ${darkMode && "chatsDark"}`}>
         <h3>Chats </h3>
+
+        {!sortedRooms?.length > 0 && !isLoading && (
+          <div className="noData">
+            <p>No chat history</p>
+          </div>
+        )}
+
+        {isLoading && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <CircularProgress />
+          </Box>
+        )}
 
         {sortedRooms.map((room) =>
           room.isGroup ? (
