@@ -152,6 +152,14 @@ max-width: 130px;
   background-color: #795f77 !important;
 }
 
+
+.addRoom__form {
+width: 70%;
+  /* min-width: 400px; */
+}
+
+
+
 @media screen and (max-width: 509px) {
     .showPassword {
         right:  170px;

@@ -4,6 +4,7 @@
     flex-direction: column;
     background-color: rgb(255, 255, 255);
     user-select:none;
+    padding-bottom: 60px;
 }
 
 .chatsDark {
@@ -27,6 +28,10 @@
 	width: 100%;
     margin-top: 55px;
     background-color: rgba(255, 255, 255, 0.667);
+}
+
+.chats__body h3 {
+    margin: 10px;
 }
 
 .chatsDark .chats__body{

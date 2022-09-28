@@ -1,35 +1,53 @@
 import styles from "../styles/ChatRoom.module.css";
 import { ArrowBack } from "@mui/icons-material";
-import React, { useRef, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-// import { fetchPost } from "../actions/posts";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { Avatar, Button, TextareaAutosize } from "@mui/material";
-// import { useStateContex } from "../store/StateProvider";
-// import Spinner from "../components/loadash/Spinner";
-// import messageCard from "../components/message/messageCard";
+import { useStateContex } from "../store/StateProvider";
 import { Camera, SendFill } from "react-bootstrap-icons";
 import Message from "../components/Message";
-// import {
-//   addmessage,
-//   fetchmessages,
-//   // addMoremessages,
-//   addReply,
-// } from "../actions/messages";
-// import { messagePst } from "../actions/posts";
+import { fetchMessages, sendMessage } from "../actions/messages";
+import { fetchRoom } from "../actions/chatRooms";
 
 const ChatRoom = () => {
-  const [message, setmessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
-  //   const dispatch = useDispatch();
-  //   const { id } = useParams();
-  //   const user = JSON.parse(localStorage.getItem("profile"));
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const roomId = id;
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const mentorLocal = JSON.parse(localStorage.getItem("mentor"));
   const [focused, setFocused] = useState(false);
+  const { messages, } = useSelector((state) => state.messages);
+  const { room} = useSelector((state) => state.rooms);
+  const { chatInfo, setChatInfo, recipientId } = useStateContex();
+
+  if (room._id) setChatInfo(room)
 
   const { darkMode, focus } = false;
-  //   const { post, isLoading } = useSelector((state) => state.posts);
-  //   const { messages, messagesId } = useSelector((state) => state.messages);
+ 
+
+  useEffect(() => {
+    dispatch(fetchMessages(roomId));
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+
+  }, [roomId]);
+
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(fetchMessages(roomId));
+      scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 5000)
+
+    dispatch(fetchRoom(roomId));    
+    return () => clearInterval(interval)
+  }, []);
 
   //   const sortmessages = messages
   //     .slice()
@@ -47,25 +65,23 @@ const ChatRoom = () => {
   //   }, []);
 
   const handleChange = (e) => {
-    setmessage(e.target.value);
+    setMessage(e.target.value);
   };
 
-  //   const chatData = {
-  //     message,
-  //     image: "",
-  //     creatorName: user?.result?.displayName || user?.result?.name,
-  //     userDp: user?.result?.photoURL,
-  //     replies: [],
-  //     likes: [],
-  //   };
+  const chatData = {
+    message: message,
+    image: "",
+    senderId: user.result._id,
+    mentorId: mentorLocal?._id,
+    recipientId: recipientId,
+    senderName:  user?.result?.name,
+    roomDbId: chatInfo?._id,
+  };
 
   const handleSubmit = async (e) => {
-    console.log("first");
     e.preventDefault();
-    messagesRef.current?.scrollIntoView({ behavior: "smooth" });
-    // dispatch(messagePst(id));
-    // dispatch(addmessage({ chatData, postId: id, messagesId: messagesId}));
-    setmessage("");
+    dispatch(sendMessage(roomId, { chatData }));
+    setMessage("");
   };
 
   //   if (isLoading)
@@ -75,61 +91,75 @@ const ChatRoom = () => {
   //       </div>
   //     );
 
+  // const receiverInfo =chatInfo?.users__profile?.find(
+  //   (profile) => profile !== user.result._id
+  // )
+ 
+const receiverInfo=chatInfo?.users__profile?.map(pro => pro._id !== user.result._id ? pro : null )
+  const receiverName = receiverInfo?.map((rec) => rec?.mentorshipName || rec?.name) || chatInfo?.name
+  const receiverImg = receiverInfo?.map((rec) => rec?.mentorshipDp || rec?.image || chatInfo?.image)
+
+  
+
+
   return (
     <div className={`${styles.chatRoom} ${darkMode && styles.chatroomDark}`}>
       <div className={styles.chatroom__top}>
         <ArrowBack onClick={() => navigate(-1)} className={styles.arrowBack} />
-        <Avatar className={styles.topAvatar}></Avatar>
-        <p className={styles.roomName}>Themselve</p>
+      {chatInfo.isGroup ? (  <>
+        <Avatar
+          className={styles.topAvatar}
+          src={chatInfo.image}
+          alt="Juaneme8"
+        >
+         {chatInfo?.roomName?.charAt(0)}
+
+        </Avatar>
+        <p className={styles.roomName}> { chatInfo?.roomName || receiverName}</p>
+      </>
+        ) : (
+          <>
+            <Avatar
+            className={styles.topAvatar}
+            src={receiverImg?.filter(ava => ava) || chatInfo?.image}
+            alt="Juaneme8"
+          >
+           {receiverInfo?.map((rec) => rec?.mentorshipName?.charAt(0) || rec?.name.charAt(0) ) || chatInfo?.name?.charAt(0) }
+  
+          </Avatar>
+          <p className={styles.roomName}> {receiverName}</p>
+          </>
+        )}
+        
+
       </div>
 
       <div className={styles.chatroom__body}>
         <div ref={messagesRef} />
         <div className={styles.messages}>
           {/* { {sortmessages?.map((message, i) => (  */}
-          <Message
-            //   key={i}
+        {
+          messages?.map((message, i) => (
+            <Message
+              key={i+message._id}
             user
-            id={message.id}
-            message="Hi there"
+            id={message._id}
+            senderId={message.senderId}
+            message={message.message}
             timestamp={message.createdAt}
             image={message.image}
-            creatorName="Gyan"
+          creatorName={message.creatorName}
           />
-          <Message
-            //   key={i}
-
-            id={message.id}
-            message="Hi"
-            timestamp={message.createdAt}
-            image={message.image}
-            creatorName="Gyan"
-          />
-          <Message
-            //   key={i}
-            user
-            id={message.id}
-            message="How are you"
-            timestamp={message.createdAt}
-            image={message.image}
-            creatorName="Gyan"
-          />
-          <Message
-            //   key={i}
-
-            id={message.id}
-            message="Cool 😎"
-            timestamp={message.createdAt}
-            image={message.image}
-            creatorName="Gyan"
-          />
+          ))
+        }
           {/* ))}  */}
         </div>
       </div>
-
+      <div className={styles.scrollView} ref={scrollRef} />
       <div
         className={`${styles.chatroom__footer} ${focused && styles.focused}`}
       >
+           
         <div className={`${styles.chatroom__form}`}>
           <div className={styles.footerBotmLeft}>
             <Camera className={styles.footerCamera} />
@@ -149,7 +179,7 @@ const ChatRoom = () => {
               multiline="multiline"
             />
           </form>
-          <Button className={styles.sendButton}>
+          <Button onClick={handleSubmit} className={styles.sendButton}>
             <SendFill className={styles.sendIcon} />
           </Button>
         </div>
@@ -175,6 +205,7 @@ const ChatRoom = () => {
           </div>
         )} */}
       </div>
+ 
     </div>
   );
 };

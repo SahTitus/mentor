@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 // Prepares the data layer
 export const StateContext = createContext();
 
@@ -7,23 +7,15 @@ export const StateProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
- 
-  const [ replyingTo, setReplyingTo] = useState(false);
-  const [ focus, setFocus] = useState(false);
 
-  const currentTheme = localStorage.getItem("currentTheme");
-
-  useEffect(() => {
-    if (currentTheme === "dark") {
-      setDarkMode(true);
-    } else {
-      setDarkMode(false);
-    }
-  }, []);
+  const [replyingTo, setReplyingTo] = useState(false);
+  const [focus, setFocus] = useState(false);
+  const [currentId, setCurrentId] = useState(null);
+  const [chatInfo, setChatInfo] = useState({});
+  const [recipientId, setRecipientId] = useState(null);
 
   const setMode = (e) => {
     setDarkMode(e.target.checked);
-  
   };
 
   return (
@@ -32,6 +24,13 @@ export const StateProvider = ({ children }) => {
         darkMode,
         focus,
         replyingTo,
+        chatInfo,
+        recipientId,
+        currentId,
+     
+        setCurrentId,
+        setRecipientId,
+        setChatInfo,
         setReplyingTo,
         setMode,
         setFocus,

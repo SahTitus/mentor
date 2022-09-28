@@ -1,17 +1,100 @@
 import { Avatar, Button, IconButton } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/MentorCard.module.css";
 import { MailOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useStateContex } from "../store/StateProvider";
+import { PersonFill } from "react-bootstrap-icons";
+import {
+  sendRequest,
+  cancelRequest,
+  acceptRequest,
+} from "../actions/notifications";
+import { useEffect } from "react";
 
-const MentorCard = ({name, image, program}) => {
+const MentorCard = ({
+  name,
+  image,
+  program,
+  id,
+  myMentorId,
+  pendingMentees,
+  connectedMentees,
+}) => {
+  const [pending, setPending] = useState(false);
+  const [connected, setConnected] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const mentor = JSON.parse(localStorage.getItem("mentor"));
+
+  const { setRecipientId, setChatInfo } = useStateContex();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    pendingMentees.map((penId) => {
+      if (penId === user?.result?._id) {
+        setPending(true);
+      } else {
+        setPending(false);
+      }
+      return null;
+    });
+
+    connectedMentees.map((penId) => {
+      if (penId === user?.result?._id) {
+        setConnected(true);
+      } else {
+        setConnected(false);
+      }
+      return null;
+    });
+  }, [connectedMentees, dispatch, pendingMentees, user?.result?._id]);
+
+  const requestData = {
+    requestId: user?.result?._id,
+    image: mentor?.image || user?.result?.image,
+    name: mentor?.name || user?.result?.name,
+    mentorId: myMentorId,
+    users: [id, user?.result?._id],
+    connected: false,
+  };
+
+  const connect = () => {
+    dispatch(sendRequest(requestData));
+    setPending(!pending);
+  };
+  const disConnect = () => {
+    dispatch(
+      acceptRequest({
+        mentorId: myMentorId,
+        menteeId: user?.result?._id,
+      })
+    );
+  };
+  const cancelRqt = () => {
+    setPending(!pending);
+    dispatch(
+      cancelRequest({ requestId: user?.result?._id, mentorId: myMentorId })
+    );
+  };
+
+  const openChatRoom = () => {
+    setRecipientId(id);
+    setChatInfo({ name, image, id });
+  };
+
   return (
     <div className={styles.mentorCard}>
       <div className={styles.image__wrapper}>
         {" "}
         <img
           className={styles.image}
-          src={image}
+          src={`${
+            image ||
+            "https://gravatar.com/avatar/9b36ffe978d6f0761521bd04707b4b40?size=125&d=https%3A%2F%2Fassets.untappd.com%2Fsite%2Fassets%2Fimages%2Fdefault_avatar_v3_gravatar.jpg%3Fv%3D2"
+          } `}
           alt=""
         />
       </div>
@@ -24,18 +107,55 @@ const MentorCard = ({name, image, program}) => {
         </div>
         <div className={styles.card__bottom}>
           <div className={styles.card__left}>
-            <Avatar className={styles.avatar} />
+            <Avatar
+              src={`${
+                image ||
+                "https://gravatar.com/avatar/9b36ffe978d6f0761521bd04707b4b40?size=125&d=https%3A%2F%2Fassets.untappd.com%2Fsite%2Fassets%2Fimages%2Fdefault_avatar_v3_gravatar.jpg%3Fv%3D2"
+              } `}
+              className={styles.avatar}
+            />
             <p>{name}</p>
           </div>
-          <div className={styles.card__right}>
-            <Link to='/chatroom'>
-            <IconButton>
-              {" "}
-              <MailOutlined className={styles.ar} />
-            </IconButton>
-            </Link>
-            <Button className={styles.connectBtn}>Connect</Button>
-          </div>
+          {id === mentor?.userId ? (
+            <p>
+              <PersonFill className={styles.card__rightPerson} />
+            </p>
+          ) : (
+            <div className={styles.card__right}>
+              <Link
+                to={`/chatroom/${id}-${user?.result?._id} `}
+                onClick={openChatRoom}
+              >
+                <IconButton>
+                  {" "}
+                  <MailOutlined className={styles.ar} />
+                </IconButton>
+              </Link>
+              {pending ? (
+                <Button
+                  onClick={cancelRqt}
+                  className={`${styles.connectBtn} ${styles.cancelRequest}`}
+                >
+                  Cancel Request
+                </Button>
+              ) : (
+                <>
+                  {connected ? (
+                    <Button
+                      onClick={disConnect}
+                      className={`${styles.connectBtn} ${styles.connected}`}
+                    >
+                      Disconnect
+                    </Button>
+                  ) : (
+                    <Button onClick={connect} className={styles.connectBtn}>
+                      Connect
+                    </Button>
+                  )}
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

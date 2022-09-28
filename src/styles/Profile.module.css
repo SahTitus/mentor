@@ -25,6 +25,13 @@
 }
 
 
+.noData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
 .profile__arrowBack {
 color: #fff !important;
 }

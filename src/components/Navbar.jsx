@@ -1,5 +1,6 @@
 import {
   Add,
+  Group,
   Menu,
   NotificationsOutlined,
   Person,
@@ -17,45 +18,24 @@ import { Link } from "react-router-dom";
 import { useStateContex } from "../store/StateProvider";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth";
+import { logoutMentor } from "../redux/mentors";
 
 const listItems = [
-  // {
-  //   listIcon: <Home />,
-  //   listText: "Admin",
-  //   add: false,
-  //   link: '/students',
-  // },
   {
     listIcon: <Person />,
     listText: "Profile",
     add: false,
-    link: "/students",
+    link: "/profile",
   },
-  {
-    listIcon: <People />,
-    listText: "Mentors",
-    add: false,
-    link: "/students",
-  },
-  {
-    listIcon: <QuestionMark />,
-    listText: "Help",
-    add: false,
-    link: "/students",
-  },
-  // {
-  //   listIcon: <Paid />,
-  //   listText: "Make payment",
-  //   add: false,
-  //   link: '/students',
-  // },
+
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("profile"));
-  const { darkMode } = useStateContex();
+  const mentor = JSON.parse(localStorage.getItem("mentor"));
+
   const dispatch = useDispatch();
 
   const toggleSlider = () => {
@@ -64,6 +44,7 @@ const Navbar = () => {
 
   const logOut = () => {
     dispatch(logout());
+    dispatch(logoutMentor());
     window.location.reload(true);
     // closeDrawer()
   };
@@ -75,15 +56,21 @@ const Navbar = () => {
           <>
             <Avatar
               className={styles.side__avatar}
-              src={user?.result?.photoURL}
+              src={
+                user?.result?.image ||
+                user?.result?.mentorshipDp
+              }
               alt="Juaneme8"
             >
-              {user?.result?.displayName?.charAt(0) ||
+              {
                 user?.result?.name.charAt(0)}{" "}
             </Avatar>
             <div className={styles.side__userInfo}>
-              <p>{user?.result?.displayName || user?.result?.name}</p>
-              <span>{user?.result?.email}</span>
+              <p>
+                {mentor?.name ||
+                  user?.result?.name}
+              </p>
+              <span>{mentor?.email || user?.result?.email}</span>
             </div>
           </>
         ) : (
@@ -109,6 +96,35 @@ const Navbar = () => {
           </Link>
         ))}
 
+       
+        <Link to="/myMentors">
+          <ListItem
+            button
+            className={`${styles.drawer__listItem} `}
+          >
+            <div className={styles.drawer__listIcon}>
+              <People />
+            </div>
+            <div className={styles.drawer__listText}>
+              {mentor?._id ? "Mentees" : "Mentors"}
+            </div>
+          </ListItem>
+        </Link>
+        {mentor?._id && (
+          <Link to="/addRoom">
+          <ListItem
+            button
+            className={`${styles.drawer__listItem} `}
+          >
+            <div className={styles.drawer__listIcon}>
+              <Add />
+            </div>
+            <div className={styles.drawer__listText}>
+             Create a group
+            </div>
+          </ListItem>
+        </Link>
+        )}
         <ListItem
           onClick={logOut}
           button
@@ -119,17 +135,21 @@ const Navbar = () => {
           </div>
           <div className={styles.drawer__listText}>Log out</div>
         </ListItem>
-        <Link to='/addMentor' >
-        <ListItem
-          button
-          className={`${styles.drawer__listItem} ${styles.add__button} `}
-        >
-          <div className={styles.drawer__listIcon}>
-            <Add />
-          </div>
-          <div className={styles.drawer__listText}>Become a mentor</div>
-        </ListItem>
-        </Link>
+        {!mentor && (
+          <>
+            <Link to="/addMentor">
+              <ListItem
+                button
+                className={`${styles.drawer__listItem} ${styles.add__button} `}
+              >
+                <div className={styles.drawer__listIcon}>
+                  <Add />
+                </div>
+                <div className={styles.drawer__listText}>Become a mentor</div>
+              </ListItem>
+            </Link>
+          </>
+        )}
       </List>
     </Box>
   );
@@ -140,9 +160,11 @@ const Navbar = () => {
       <IconButton onClick={toggleSlider} className={styles.menu}>
         <Menu />
       </IconButton>
-      <IconButton onClick={logOut} className={styles.notif__container}>
-        <NotificationsOutlined />
-      </IconButton>
+      <Link to="/notifications">
+        <IconButton className={styles.notif__container}>
+          <NotificationsOutlined />
+        </IconButton>
+      </Link>
       <Drawer
         className={styles.drawer}
         onClick={toggleSlider}

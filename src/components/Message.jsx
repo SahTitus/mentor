@@ -1,9 +1,14 @@
 import React from "react";
 import styles from "../styles/Message.module.css";
 
-const Message = ({ creatorName, user, message }) => {
+const Message = ({ creatorName, message, id, senderId }) => {
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const mentorLocal = JSON.parse(localStorage.getItem("mentor"));
+
+  const isUser = senderId === user?.result?._id || mentorLocal?.id === senderId;
+
   return (
-    <div className={`${styles.messageCard} ${user && styles.userCard} `}>
+    <div className={`${styles.messageCard} ${isUser&& styles.userCard} `}>
       <div className={styles.messageCardMainLeft}>
         {" "}
         {/* <Avatar src={userDp} className={styles.avatar} /> */}

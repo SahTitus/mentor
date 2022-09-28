@@ -1,0 +1,100 @@
+.notifications {
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications h3 {
+    margin: 60px 10px 10px 10px;
+}
+
+.notif__card {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ccc;
+}
+
+.card__top {
+    display: flex;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.info{
+    flex: 1;
+    margin-left: 10px;
+}
+
+.info p {
+    font-weight: 500;
+}
+.info span {
+   font-size: 13px;
+   color: rgb(146, 144, 144);
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+}
+
+.buttom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+}
+
+.buttom__button {
+    background-color: blueviolet !important;
+    color: #fff !important;
+    margin: 10px !important;
+    text-transform: initial !important;
+    padding: 5px 20px !important;
+}
+
+.buttom p {
+    font-size: 13px;
+    color: rgb(146, 144, 144);
+    margin: 0 10px;
+}
+
+.disableBtn {
+    background-color: rgb(250, 245, 245) !important;
+    color: #000 !important;
+}
+
+/* // Top Mentors */
+
+.topMentors__list {
+margin-top: 60px;
+}
+
+.topMentors__list h3 {
+    margin: 10px ;
+}
+
+.seeMore {
+    padding-bottom: 60px;
+}
+
+.connectBtn {
+    /* #a5219e */
+    background-color: #a5219e !important;
+    color: white !important;
+    margin-left: 15px !important;
+    height: 30px !important;
+    text-transform: initial !important;
+}
+
+.cancelRequest{
+    background-color: #d461cf !important;   
+}
+
+.connected {
+    background-color: #f88af3 !important;
+}
+
+.card__rightPerson{
+    color: #a5219e;
+    font-size: 25px;
+}

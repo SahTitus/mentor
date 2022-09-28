@@ -4,7 +4,7 @@ import React from "react";
 import styles from "../styles/Herobanner.module.css";
 import av from "../images/av.svg";
 
-const Herobanner = () => {
+const Herobanner = ({scroll}) => {
   return (
     <div className={styles.herobanner}>
       <form className={styles.banner__search}>
@@ -19,7 +19,7 @@ const Herobanner = () => {
           <p>
             Get connect a +100k best Mentors and get solutions for problems.
           </p>
-          <Button className={styles.hero__button}>Learn More {`>>`}</Button>
+          <Button onClick={scroll}  className={styles.hero__button}>Learn More {`>>`}</Button>
         </div>
         {/* <div className={styles.hero__right}> */}
           <img src={av} alt="avatar" className={styles.avatarSvg} />

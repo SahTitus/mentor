@@ -16,16 +16,17 @@ import {
   TextField,
 } from "@mui/material";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 import styles from "../styles/CreateMentor.module.css";
-import { createMentor } from "../actions/mentors";
+import { createMentor, updateMentor } from "../actions/mentors";
+import { useStateContex } from "../store/StateProvider";
 
 const initialState = {
-  fullName: "",
+  name: "",
   education: "",
   email: "",
   dbirth: "",
@@ -39,10 +40,11 @@ const initialState = {
 const CreateMentor = () => {
   const [showPassword, setShowPassword] = useState(false);
   const user = JSON.parse(localStorage.getItem("profile"));
+  const mentor = JSON.parse(localStorage.getItem("mentor"));
   const [formData, setFormData] = useState(initialState);
   const [image, setImage] = useState(null);
 
-  console.log(user?.result?._id);
+  const { currentId } = useStateContex();
 
   let inputFileRef = useRef(null);
   const selectImg = (e) => {
@@ -84,7 +86,6 @@ const CreateMentor = () => {
 
   const handleImage = (e) => {
     const file = e.target.files[0];
-    console.log("ss");
     Resizer.imageFileResizer(
       file,
       700,
@@ -103,11 +104,10 @@ const CreateMentor = () => {
     }
     // setFileToBase(file);
   };
-  console.log(formData);
 
   const disableBtn =
-    !formData.fullName.length > 0 ||
-    !formData.fullName.trim() ||
+    !formData.name.length > 0 ||
+    !formData.name.trim() ||
     !formData.email.length > 0 ||
     !formData.email.trim() ||
     !formData.password.length > 0 ||
@@ -124,25 +124,44 @@ const CreateMentor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(
-      createMentor({
-        ...formData,
-        mentor: true,
-        id: user?.result?._id,
-        image: image,
-      })
-    );
-    navigate("/");
+    if (currentId) {
+      dispatch(
+        updateMentor(mentor?._id, {
+          ...formData,
+          image: image,
+        })
+      );
+      navigate("/profile");
+    } else {
+      dispatch(
+        createMentor({
+          ...formData,
+          mentor: true,
+          id: user?.result?._id,
+          image: image,
+        })
+      );
+      navigate("/");
+    }
+   
   };
+
+ 
+  useEffect(() => {
+    if (mentor) {
+      setImage(mentor.image);
+      setFormData({ ...mentor, confirmPassword: mentor.password });
+    }
+  }, []);
 
   return (
     <div className={styles.createMentor}>
       <div className={styles.createMentor__top}>
         <ArrowBack onClick={() => navigate(-1)} className={styles.arrowBack} />
-        <p>Become a Mentor</p>
+        {currentId ? <p>Edit Profile</p> : <p>Become a Mentor</p>}
       </div>
       <div className={styles.title}>
-        <p>Create an Account as Mentor</p>
+        {currentId ? null : <p>Create an Account as Mentor</p>}
       </div>
 
       <form className={styles.form}>
@@ -204,8 +223,8 @@ const CreateMentor = () => {
               label="Full Name"
               variant="outlined"
               className={styles.auth_input}
-              name="fullName"
-              value={formData.fullName}
+              name="name"
+              value={formData.name}
             />
           </Box>
         )}
@@ -314,34 +333,36 @@ const CreateMentor = () => {
           </div>
         </Box>
         <div className={styles.halve__inputs}>
-          <Box
-            id={styles.auth_inputBox}
-            sx={{ display: "flex", alignItems: "center", margin: "10px" }}
-            className={styles.password__inputs}
-          >
-            <TextField
-              onChange={handleChange}
-              id={styles.auth_input}
-              className={styles.auth_input}
-              required
-              label="Password"
-              type={showPassword ? "text" : "password"}
-              variant="outlined"
-              name="password"
-              value={formData.password}
-            />
-            <IconButton
-              className={styles.showPassword}
-              onClick={toggleShowPassword}
+          {!currentId && (
+            <Box
+              id={styles.auth_inputBox}
+              sx={{ display: "flex", alignItems: "center", margin: "10px" }}
+              className={styles.password__inputs}
             >
-              {!showPassword ? (
-                <VisibilityOff className="showPassword" />
-              ) : (
-                <Visibility className="showPassword" />
-              )}
-            </IconButton>
-          </Box>
-          {user && (
+              <TextField
+                onChange={handleChange}
+                id={styles.auth_input}
+                className={styles.auth_input}
+                required
+                label="Password"
+                type={showPassword ? "text" : "password"}
+                variant="outlined"
+                name="password"
+                value={formData.password}
+              />
+              <IconButton
+                className={styles.showPassword}
+                onClick={toggleShowPassword}
+              >
+                {!showPassword ? (
+                  <VisibilityOff className="showPassword" />
+                ) : (
+                  <Visibility className="showPassword" />
+                )}
+              </IconButton>
+            </Box>
+          )}
+          {user?.result?._id && !currentId && (
             <Box
               id={styles.auth_inputBox}
               sx={{ display: "flex", alignItems: "center", margin: "10px" }}
@@ -365,7 +386,7 @@ const CreateMentor = () => {
           disabled={disableBtn}
           className={`${styles.createBtn} ${disableBtn && styles.disableBtn}`}
         >
-          Create
+          {currentId ? "Save" : " Create"}
         </Button>
       </form>
     </div>

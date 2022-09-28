@@ -1,28 +1,59 @@
 import { Avatar } from "@mui/material";
 import { PeopleFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-// import { useStateContex } from "../store/StateProvider";
+import { useStateContex } from "../store/StateProvider";
 import styles from "../styles/Chat.module.css";
 
-function Chat({ username, addNewChat, message, group, image, timestamp }) {
+function Chat({
+  receiverInfo,
+  id,
+  addNewChat,
+  message,
+  isGroup,
+  latestMsg,
+  roomIcon,
+  roomName,
+  timestamp,
+}) {
   const { darkMode } = false;
+  const { setRecipientId } = useStateContex();
+  console.log(roomIcon)
+  console.log(receiverInfo)
+
+  const avaImg = receiverInfo?.map((rec) => rec?.mentorshipDp || rec?.image) 
 
   return (
-    <Link className={styles.link} to="/chatRoom">
+    <Link onClick={()=>  setRecipientId(id)} className={styles.link} to={`/chatRoom/${id}`}>
       <div className={`${styles.chat} ${darkMode && styles.chatDark}`}>
-        <Avatar className={styles.chat__avatar} src={""}>
-          {username.charAt(0)}
+    {isGroup ? (
+          <Avatar
+          className={styles.chat__avatar}
+          src={roomIcon}
+        >
+         {roomName?.charAt(0) } 
         </Avatar>
+    ) : (
+          <Avatar
+          className={styles.chat__avatar}
+          src={avaImg.filter(ava => ava)}
+        >
+         {receiverInfo.map((rec) => rec?.mentorshipName?.charAt(0) || rec?.name.charAt(0) )} 
+        </Avatar>
+    )} 
         <div className={styles.chat__text}>
           <div className={styles.chat__textInfo}>
             <div className={styles.chat__textInfoTop}>
               <div className={styles.chat__textInfoTop}>
-                <p>{username}</p>
-             {group && <PeopleFill className={styles.peopleIcon}/>}
+                <p>
+                  {isGroup ? (roomName) : (
+                    receiverInfo.map((rec) => rec?.mentorshipName || rec?.name)
+                  )}
+                </p>
+                {isGroup && <PeopleFill className={styles.peopleIcon} />}
               </div>
-              <span className={styles.chat__timestamp}>{timestamp}</span>
+              {/* <span className={styles.chat__timestamp}>{timestamp}</span> */}
             </div>
-            <p className={styles.chat__message}>{message}</p>
+            <p className={styles.chat__message}>{latestMsg}</p>
           </div>
         </div>
       </div>

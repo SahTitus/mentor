@@ -80,4 +80,26 @@ margin-bottom: 10px;
     color: white !important;
     margin-left: 15px !important;
     height: 30px !important;
+    text-transform: initial !important;
 }
+
+.cancelRequest{
+    background-color: #d461cf !important;   
+}
+
+.connected {
+    background-color: #f88af3 !important;
+}
+
+.card__rightPerson{
+    color: #a5219e;
+    font-size: 25px;
+}
+
+@media screen and (min-width: 759px) {
+    .mentorCard {
+  max-width: 1000px;
+  min-width: 800px;
+    }
+  
+  }

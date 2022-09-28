@@ -1,22 +1,22 @@
 import * as api from "../api/index.js";
+import { getUser } from "../redux/auth.js";
 import {
   isLoading,
   getMentors,
   getMentor,
+  getMentees,
   error,
   addMentor,
   update,
   deleteMentor,
-  like,
-  repost
+  connect,
+  removeMentee,
 } from "../redux/mentors";
 
 export const fetchMentors = () => async (dispatch) => {
   dispatch(isLoading());
   try {
     const { data } = await api.fetchMentors();
-
-    console.log(data);
 
     dispatch(getMentors(data));
   } catch (err) {
@@ -29,9 +29,18 @@ export const fetchMentor = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchMentor(id);
 
-    console.log(data);
-
     dispatch(getMentor(data));
+  } catch (error) {
+    dispatch(error(error));
+  }
+};
+
+export const fetchMentees = (id) => async (dispatch) => {
+  dispatch(isLoading());
+  try {
+    const { data } = await api.fetchMentees(id);
+
+    dispatch(getMentees(data));
   } catch (error) {
     dispatch(error(error));
   }
@@ -43,7 +52,6 @@ export const createMentor = (mentor) => async (dispatch) => {
     const { data } = await api.createMentor(mentor);
     dispatch(addMentor(data));
 
-    console.log(mentor);
   } catch (error) {
     console.error(error);
   }
@@ -51,21 +59,21 @@ export const createMentor = (mentor) => async (dispatch) => {
 
 export const updateMentor = (id, mentor) => async (dispatch) => {
   try {
-    const updatedMentor = await api.updateMentor(id, mentor);
+    const{ data } = await api.updateMentor(id, mentor);
 
-    dispatch(update(updatedMentor));
+    dispatch(update(data));
   } catch (error) {
     console.error(error);
   }
 };
 
-export const likeMentor = (id) => async (dispatch) => {
-  console.log(id);
-  try {
-    const { data } = await api.likeMentor(id);
-    console.log(data);
 
-    dispatch(like(data));
+export const disConnect = (id, menteeId) => async (dispatch) => {
+  try {
+    const { data } = await api.disConnect(id, menteeId);
+
+    dispatch(getMentor(data.updatedMentor));
+    dispatch(getUser(data.updatedMentee));
   } catch (error) {
     console.error(error);
   }
@@ -80,5 +88,15 @@ export const deleteMento = (id) => async (dispatch) => {
     dispatch(deleteMentor(id));
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const deleteMentee = (id) => async (dispatch) => {
+  try {
+    await api.deleteMentee(id);
+
+    dispatch(removeMentee(id));
+  } catch (err) {
+    dispatch(error(err?.response?.data));
   }
 };

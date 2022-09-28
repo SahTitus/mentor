@@ -47,3 +47,12 @@ margin: 10px 0;
   color: #fff !important;
   text-transform: initial !important;
 }
+
+@media screen and (min-width: 759px) {
+  .mentors {
+align-items: center;
+/* justify-content: center; */
+width: 100%;	
+  }
+
+}
