@@ -1,4 +1,11 @@
-import { authData, isError, getUsers, getUser, isLoading, update } from "../redux/auth";
+import {
+  authData,
+  isError,
+  getUsers,
+  getUser,
+  isLoading,
+  update,
+} from "../redux/auth";
 import * as api from "../api/index.js";
 
 export const fetchUsers = () => async (dispatch) => {
@@ -13,7 +20,7 @@ export const fetchUsers = () => async (dispatch) => {
 };
 export const fetchUser = (id) => async (dispatch) => {
   dispatch(isLoading());
- 
+
   try {
     const { data } = await api.fetchUser(id);
 
@@ -31,7 +38,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
     navigate("/");
   } catch (error) {
-    console.error(error);
+    dispatch(isError(error));
   }
 };
 
@@ -40,10 +47,10 @@ export const logWithGoogle = (formData, navigate) => async (dispatch) => {
     const { data } = await api.logWithGoogle(formData);
 
     dispatch(authData(data));
-    console.log('yes')
+
     navigate("/");
   } catch (error) {
-    console.error(error);
+    dispatch(isError(error));
   }
 };
 
@@ -55,22 +62,18 @@ export const signup = (formData, navigate) => async (dispatch) => {
 
     navigate("/");
   } catch (error) {
-    console.error(error);
+   dispatch(isError(error));
   }
 };
 
+export const updateUser = (id, userData, navigate) => async (dispatch) => {
+  dispatch(isLoading());
+  try {
+    const { data } = await api.updateUser(id, userData);
 
-export const updateUser =
-  (id, userData, navigate,) => async (dispatch) => {
-    dispatch(isLoading());
-    try {
-      const { data } = await api.updateUser(id, userData);
-
-  
-        navigate("/profile");
-        dispatch(update(data));
-
-    } catch (error) {
-      dispatch(isError(error?.response?.data));
-    }
-  };
+    navigate("/profile");
+    dispatch(update(data));
+  } catch (error) {
+    dispatch(isError(error?.response?.data));
+  }
+};

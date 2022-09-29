@@ -15,7 +15,6 @@
   padding: 20px 0;
   background-color: #a5219e;
   color: #fff !important;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 18px;
   position: fixed;
   top: 0;
@@ -23,10 +22,13 @@
   z-index: 100;
 }
 
+
 .selectedImage {
-height: 200px;
-margin-top: -10px;
-}
+	height: 200px;
+	margin-top: -10px;
+	max-width: 100%;
+	margin: 10px 0;
+	}
 
 .cancelImage {
   position: absolute;
@@ -37,6 +39,11 @@ margin-top: -10px;
 .arrowBack {
   margin: 0 10px;
   cursor: pointer;
+}
+
+.error {
+	color: red;
+	margin: 10px 0;
 }
 
 .title {
@@ -79,7 +86,7 @@ margin-top: -10px;
 
 .reli__inputwrapper {
     flex: 1 !important;
-    min-width: 100px !important;
+    min-width: 150px !important;
 }
 
 .reli__inputbox {
@@ -90,6 +97,7 @@ margin-top: -10px;
 
 .date__input {
 max-width: 130px;
+min-width: 150px !important;
 }
 
 .edu_inputBox {
@@ -141,6 +149,24 @@ max-width: 130px;
   z-index: 100;
 }
 
+.errEye {
+	bottom: 10px;
+
+}
+
+.showPassword {
+  position: absolute !important;
+  right: 5px;
+
+z-index: 100 !important;
+}
+
+.showPasswordIcon{
+right: 5px;
+top: 10px;
+z-index: 100 !important;
+}
+
 .createBtn {
   margin: 40px 0 !important;
   background-color: #a5219e !important;
@@ -153,17 +179,21 @@ max-width: 130px;
 }
 
 
+
 .addRoom__form {
 width: 70%;
   /* min-width: 400px; */
 }
 
-
-
 @media screen and (max-width: 509px) {
     .showPassword {
-        right:  170px;
+        right:  180px;
+        position: absolute;
 
+      }
+
+      .passError{
+        top: 15px !important;
       }
 }
 
@@ -172,6 +202,9 @@ width: 70%;
         display: flex;
         align-items: center;
         /* max-width: 300px !important; */
+    }
+    .passError{
+      top: 15px !important;
     }
     
     .reli__inputwrapper {

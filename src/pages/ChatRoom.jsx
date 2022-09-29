@@ -26,9 +26,11 @@ const ChatRoom = () => {
   const { room } = useSelector((state) => state.rooms);
   const { chatInfo, setChatInfo, recipientId } = useStateContex();
 
-  if (room._id) setChatInfo(room);
+
 
   const { darkMode, focus } = false;
+
+  if (room._id) setChatInfo(room);
 
   useEffect(() => {
     dispatch(fetchMessages(roomId));
@@ -38,6 +40,7 @@ const ChatRoom = () => {
   const scrollRef = useRef();
 
   useEffect(() => {
+    if (!user?.result?._id) navigate("/auth");
     const interval = setInterval(() => {
       dispatch(fetchMessages(roomId));
       scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,10 +49,6 @@ const ChatRoom = () => {
     dispatch(fetchRoom(roomId));
     return () => clearInterval(interval);
   }, []);
-
-  //   const sortmessages = messages
-  //     .slice()
-  //     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
   //   const disableReply = !reply.trim();
   //   const disablemessage = !message.trim();

@@ -101,17 +101,21 @@ const Navbar = () => {
             </ListItem>
           </Link>
         )}
-        <ListItem
-          onClick={logOut}
-          button
-          className={`${styles.drawer__listItem} `}
-        >
-          <div className={styles.drawer__listIcon}>
-            <Logout />
-          </div>
-          <div className={styles.drawer__listText}>Log out</div>
-        </ListItem>
-        {!mentor && (
+
+        {user?.result?._id && (
+          <ListItem
+            onClick={logOut}
+            button
+            className={`${styles.drawer__listItem} `}
+          >
+            <div className={styles.drawer__listIcon}>
+              <Logout />
+            </div>
+            <div className={styles.drawer__listText}>Log out</div>
+          </ListItem>
+        )}
+
+        {!mentor && user?.result?._id && (
           <>
             <Link onClick={() => setCurrentId(null)} to="/addMentor">
               <ListItem

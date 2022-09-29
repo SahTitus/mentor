@@ -42,8 +42,11 @@ const Auth = () => {
   const [formData, setFormData] = useState(initialState);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [hasSpace, setHasSpace] = useState(false);
 
   const userProf = JSON.parse(localStorage.getItem("profile"));
+  const {  isError } = useSelector((state) => state.auth);
+
 
   const { currentId } = useStateContex();
 
@@ -83,6 +86,13 @@ const Auth = () => {
     inputFileRef.click();
   };
 
+
+  const saveChanges = () => {
+    dispatch(updateUser(currentId, { ...formData, image }, navigate))
+    setImage(null)
+    
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user) {
@@ -103,8 +113,9 @@ const Auth = () => {
         ...user1,
         confirmPassword: user1.password,
         name: user1.name,
-        image: user1.image,
+      
       });
+      setImage( { image: user1.image || user1.mentorshipDp})
     }
 
     if (userProf?.result?._id) setLoading(false);
@@ -137,19 +148,66 @@ const Auth = () => {
   const SimpleDialog = (props) => {
     const { open } = props;
     return (
-      <Dialog   open={open}>
-        <Box className={styles.loadingState} sx={{ display: "flex", borderRadius: '100px', justifyContent: "center", bgcolor: 'pink' }}>
-          <CircularProgress   />
+      <Dialog open={open}>
+        <Box
+          className={styles.loadingState}
+          sx={{
+            display: "flex",
+            borderRadius: "100px",
+            justifyContent: "center",
+            bgcolor: "pink",
+          }}
+        >
+          <CircularProgress />
         </Box>
       </Dialog>
     );
   };
 
+  useEffect(() => {
+    if (formData.password || formData.confirmPassword) {
+      if (
+        hasWhiteSpace(formData?.password) ||
+        hasWhiteSpace(formData?.confirmPassword)
+      ) {
+        setHasSpace(true);
+      }
+    }
+  }, []);
+
+  function hasWhiteSpace(s) {
+    return s.indexOf(" ") >= 0;
+  }
+
+  const passError =
+    formData?.password?.length < 6 && !!formData?.password?.length;
+
+  const doesMatch =
+    formData?.password !== formData?.confirmPassword &&
+    formData?.confirmPassword;
+  const disableBtn = 
+    !formData?.email?.length > 0 ||
+    !formData?.email?.trim() ||
+    !formData?.password?.length > 0 ||
+    !formData?.password?.trim() ||
+    (!user &&
+      (
+        !formData?.lastName?.length > 0 ||
+        !formData?.firstName?.length > 0 ||
+
+
+        !formData?.confirmPassword)) ||
+    hasSpace ||
+    doesMatch;
+
+
+    const isUserError = isError?.response?.data?.type === 'msg'
+    const userError = isError?.response?.data?.message
+
   return (
     <div className={styles.auth}>
-            <SimpleDialog
+      <SimpleDialog
         open={loading}
-        // onClose={handleClose}
       />
       {currentId && (
         <div className={styles.createMentor__top}>
@@ -178,9 +236,9 @@ const Auth = () => {
                 style={{ display: "none" }}
                 type="file"
               />
-              {!user && (
+              {(!user || currentId )&& (
                 <div className={styles.select__image}>
-                  {!image && (
+                  {(!image?.length) && (
                     <>
                       <p>Upload cover image</p>
                       <IconButton
@@ -191,7 +249,7 @@ const Auth = () => {
                       </IconButton>
                     </>
                   )}
-                  {image && (
+                  {!!image?.length && (
                     <>
                       <IconButton
                         onClick={clearImg}
@@ -208,7 +266,13 @@ const Auth = () => {
                   )}
                 </div>
               )}
+              {isError?.message  && (
+                <div className={styles.error}>
+                  <p> {isUserError ? userError : 'Something went wrong'}</p>
+                </div>
+              )}
               {!user && !currentId && (
+                
                 <Box
                   id={styles.auth_inputBox}
                   sx={{ display: "flex", alignItems: "center" }}
@@ -287,7 +351,7 @@ const Auth = () => {
           {!currentId && (
             <Box
               id={styles.auth_inputBox}
-              sx={{ display: "flex", alignItems: "center" }}
+              sx={{ display: "flex", alignItems: "center", position:'relative'}}
             >
               <Lock sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
@@ -300,15 +364,20 @@ const Auth = () => {
                 variant="outlined"
                 name="password"
                 value={formData.password}
+                error={passError}
+  
+                helperText={
+                  passError ? "Password must be at least 6 characters long" : null
+                }
               />
               <IconButton
                 className={styles.showPassword}
                 onClick={toggleShowPassword}
               >
                 {!showPassword ? (
-                  <VisibilityOff className="showPassword" />
+                  <Visibility   className={styles.showPasswordIcon}/>
                 ) : (
-                  <Visibility className="showPassword" />
+                  <VisibilityOff   className={styles.showPasswordIcon} />
                 )}
               </IconButton>
             </Box>
@@ -329,6 +398,8 @@ const Auth = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 variant="outlined"
+                error={!!doesMatch}
+                helperText={doesMatch ? "Password does not match." : null}
               />
             </Box>
           )}
@@ -336,10 +407,9 @@ const Auth = () => {
 
         {currentId && (
           <Button
-            className={styles.signIn__button}
-            onClick={() =>
-              dispatch(updateUser(currentId, { ...formData, image }, navigate))
-            }
+            className={`${styles.signIn__button}  ${disableBtn && styles.disableBtn}`}
+            onClick={saveChanges}
+            disabled={disableBtn}
           >
             Save
           </Button>
@@ -351,7 +421,7 @@ const Auth = () => {
               and <span>Privacy Policy</span>
             </p>
 
-            <Button className={styles.signIn__button} onClick={handleSubmit}>
+            <Button        disabled={disableBtn} className={`${styles.signIn__button} ${disableBtn && styles.disableBtn}`} onClick={handleSubmit}>
               {user ? "Sign In" : "Sign Up"}
             </Button>
             <div className={styles.divider}>
@@ -362,6 +432,7 @@ const Auth = () => {
             <Button
               className={styles.signInWithGoogle__button}
               onClick={signInWithGoogle}
+
             >
               <img className={styles.googleLogo} src={Go} alt="" />
               Continue with Google

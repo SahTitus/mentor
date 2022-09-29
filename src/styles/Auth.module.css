@@ -13,6 +13,8 @@
 .selectedImage {
 	height: 200px;
 	margin-top: -10px;
+	max-width: 100%;
+	margin: 10px 0;
 	}
 	
 	.cancelImage {
@@ -93,7 +95,15 @@
 
 .showPassword {
     position: absolute !important;
-    right: 30px;
+    right: 5px;
+	top: 10px;
+	z-index: 1000000000000000 !important;
+}
+
+.showPasswordIcon{
+	right: 5px;
+	top: 10px;
+	z-index: 1000000000000000 !important;
 }
 
 .terms span {
@@ -124,6 +134,19 @@
 	background-color: #a5219e !important;
 	color: white !important;
 	border-radius: 20px !important;
+}
+
+.disableBtn {
+	background-color: #643262 !important;
+}
+
+.errEye {
+	bottom: 10px;
+}
+
+.error {
+	color: red;
+	margin: 10px 0;
 }
 
 .signInWithGoogle__button {

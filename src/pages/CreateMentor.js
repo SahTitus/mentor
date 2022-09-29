@@ -18,7 +18,7 @@ import {
 
 import React, { useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 import styles from "../styles/CreateMentor.module.css";
@@ -43,8 +43,10 @@ const CreateMentor = () => {
   const mentor = JSON.parse(localStorage.getItem("mentor"));
   const [formData, setFormData] = useState(initialState);
   const [image, setImage] = useState(null);
+  const [hasSpace, setHasSpace] = useState(false);
 
   const { currentId } = useStateContex();
+  const {  isError } = useSelector((state) => state.auth);
 
   let inputFileRef = useRef(null);
   const selectImg = (e) => {
@@ -105,6 +107,27 @@ const CreateMentor = () => {
     // setFileToBase(file);
   };
 
+  useEffect(() => {
+    if (formData.password || formData.confirmPassword) {
+      if (
+        hasWhiteSpace(formData?.password) ||
+        hasWhiteSpace(formData?.confirmPassword)
+      ) {
+        setHasSpace(true);
+      }
+    }
+  }, []);
+
+  function hasWhiteSpace(s) {
+    return s.indexOf(" ") >= 0;
+  }
+
+  const passError =
+    formData?.password?.length < 6 && !!formData?.password?.length;
+    const doesMatch =
+    formData?.password !== formData?.confirmPassword &&
+    formData?.confirmPassword;
+
   const disableBtn =
     !formData.name.length > 0 ||
     !formData.name.trim() ||
@@ -112,6 +135,8 @@ const CreateMentor = () => {
     !formData.email.trim() ||
     !formData.password.length > 0 ||
     !formData.password.trim() ||
+    !formData.confirmPassword.length > 0 ||
+    !formData.confirmPassword.trim() ||
     !formData.fieldExp.length > 0 ||
     !formData.fieldExp.trim() ||
     !formData.school.length > 0 ||
@@ -119,7 +144,8 @@ const CreateMentor = () => {
     !formData.education.length > 0 ||
     !formData.education.trim() ||
     !formData.religion.length > 0 ||
-    !formData.dbirth.length > 0;
+    !formData.dbirth.length > 0 ||
+    doesMatch;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -155,6 +181,10 @@ const CreateMentor = () => {
   }, []);
 
 
+  const isUserError = isError?.response?.data?.type === 'msg'
+  const userError = isError?.response?.data?.message
+
+
   return (
     <div className={styles.createMentor}>
       <div className={styles.createMentor__top}>
@@ -166,6 +196,12 @@ const CreateMentor = () => {
       </div>
 
       <form className={styles.form}>
+
+      {(isError?.message  && !user?.result?._id) && (
+                <div className={styles.error}>
+                  <p> {isUserError ? userError : 'Something went wrong'}</p>
+                </div>
+              )}
         <input
           multiple
           onChange={handleImage}
@@ -235,6 +271,7 @@ const CreateMentor = () => {
             id={styles.auth_inputBox}
             sx={{ display: "flex", alignItems: "center" }}
             className={styles.reli__inputbox}
+            fullWidth={true}
           >
             <div className={styles.reli__inputdiv}>
               <FormControl sx={{ m: 1 }} className={styles.reli__inputwrapper}>
@@ -350,15 +387,19 @@ const CreateMentor = () => {
                 variant="outlined"
                 name="password"
                 value={formData.password}
+                error={passError}
+                helperText={
+                  passError ? "Password must be at least 6 characters long" : null
+                }
               />
               <IconButton
-                className={styles.showPassword}
+                className={`${styles.showPassword} ${styles.passError}`}
                 onClick={toggleShowPassword}
               >
                 {!showPassword ? (
-                  <VisibilityOff className="showPassword" />
+                  <VisibilityOff className={styles.showPasswordIcon} />
                 ) : (
-                  <Visibility className="showPassword" />
+                  <Visibility className={styles.showPasswordIcon} />
                 )}
               </IconButton>
             </Box>
@@ -378,6 +419,8 @@ const CreateMentor = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 variant="outlined"
+                error={!!doesMatch}
+                helperText={doesMatch ? "Password does not match." : null}
               />
             </Box>
           )}

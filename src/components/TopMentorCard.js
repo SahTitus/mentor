@@ -2,7 +2,7 @@ import { Email } from "@mui/icons-material";
 import { Avatar, Button, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   acceptRequest,
   cancelRequest,
@@ -29,6 +29,7 @@ const TopMentorCard = ({
   const { setRecipientId, setChatInfo } = useStateContex();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     pendingMentees?.map((penId) => {
@@ -60,6 +61,7 @@ const TopMentorCard = ({
   };
 
   const connect = () => {
+    if (!user?.result?._id) navigate("/auth");
     dispatch(sendRequest(requestData));
     setPending(!pending);
   };
@@ -80,6 +82,11 @@ const TopMentorCard = ({
   };
 
   const openChatRoom = () => {
+    if (!user?.result?._id) {
+      navigate("/auth");
+    } else {
+      navigate(`/chatroom/${id}-${user?.result?._id} `);
+    }
     setRecipientId(id);
     setChatInfo({ name, image, id });
   };
@@ -95,14 +102,9 @@ const TopMentorCard = ({
           <span>{program}</span>
         </div>
         <div className={styles.left}>
-          <Link
-            to={`/chatroom/${id}-${user?.result?._id} `}
-            onClick={openChatRoom}
-          >
-            <IconButton onClick={() => dispatch()}>
-              <Email />
-            </IconButton>
-          </Link>
+          <IconButton onClick={openChatRoom}>
+            <Email />
+          </IconButton>
         </div>
       </div>
       <div className={styles.buttom}>
@@ -111,7 +113,7 @@ const TopMentorCard = ({
             onClick={cancelRqt}
             className={`${styles.connectBtn} ${styles.cancelRequest}`}
           >
-            Cancel 
+            Cancel
           </Button>
         ) : (
           <>

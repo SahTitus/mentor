@@ -42,8 +42,10 @@ const Profile = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    if (!user1?.result?._id) navigate("/auth");
     dispatch(fetchUser(user1?.result?._id));
   }, []);
+
 
   return (
     <div className={styles.profile}>

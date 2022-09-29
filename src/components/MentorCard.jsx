@@ -2,7 +2,7 @@ import { Avatar, Button, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/MentorCard.module.css";
 import { MailOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStateContex } from "../store/StateProvider";
 import { PersonFill } from "react-bootstrap-icons";
@@ -30,6 +30,7 @@ const MentorCard = ({
   const { setRecipientId, setChatInfo } = useStateContex();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     pendingMentees.map((penId) => {
@@ -61,6 +62,7 @@ const MentorCard = ({
   };
 
   const connect = () => {
+    if (!user?.result?._id) navigate("/auth");
     dispatch(sendRequest(requestData));
     setPending(!pending);
   };
@@ -80,6 +82,11 @@ const MentorCard = ({
   };
 
   const openChatRoom = () => {
+    if (!user?.result?._id) {
+      navigate("/auth");
+    } else {
+      navigate(`/chatroom/${id}-${user?.result?._id} `);
+    }
     setRecipientId(id);
     setChatInfo({ name, image, id });
   };
@@ -121,15 +128,12 @@ const MentorCard = ({
             </p>
           ) : (
             <div className={styles.card__right}>
-              <Link
-                to={`/chatroom/${id}-${user?.result?._id} `}
-                onClick={openChatRoom}
-              >
-                <IconButton>
+         
+                <IconButton   onClick={openChatRoom}>
                   {" "}
                   <MailOutlined className={styles.ar} />
                 </IconButton>
-              </Link>
+             
               {pending ? (
                 <Button
                   onClick={cancelRqt}
