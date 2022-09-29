@@ -18,13 +18,13 @@ const Chats = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRooms(user.result._id));
+    dispatch(fetchRooms(user?.result?._id));
   }, [dispatch]);
 
   const sortedRooms = rooms
-    .slice()
-    .sort((a, b) =>
-      b?.latestMsg?.createdAt.localeCompare(a?.latestMsg?.createdAt)
+    ?.slice()
+    ?.sort((a, b) =>
+      b?.latestMsg?.createdAt?.localeCompare(a?.latestMsg?.createdAt)
     );
   return (
     <div className={`chats ${darkMode && "chatsDark"}`}>
@@ -33,19 +33,24 @@ const Chats = () => {
       <div className={`chats__body ${darkMode && "chatsDark"}`}>
         <h3>Chats </h3>
 
-        {!sortedRooms?.length > 0 && !isLoading && (
+        {!sortedRooms?.length > 0 && !isLoading && !error?.message && (
           <div className="noData">
             <p>No chat history</p>
           </div>
         )}
 
-        {isLoading && (
+        {isLoading && !error.message  && (
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             <CircularProgress />
           </Box>
         )}
+        {!isLoading && error?.message && !sortedRooms?.length > 0 && (
+          <div className="noData">
+            <p>Something went wrong</p>
+          </div>
+        )}
 
-        {sortedRooms.map((room) =>
+        {sortedRooms?.map((room) =>
           room.isGroup ? (
             <div
               key={room.roomId}

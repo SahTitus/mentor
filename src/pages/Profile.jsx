@@ -113,12 +113,12 @@ const Profile = () => {
           </div>
         ) : (
           <div className={styles.mentees__container}>
-            {isLoading ? (
+            {isLoading  && !mentees.length > 0 ? (
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <CircularProgress />
               </Box>
             ) : (
-              mentees.length > 0 &&
+              mentees.length > 0 && 
               mentees.map((mentee) => (
                 <MenteeCard
                   id={mentee._id}

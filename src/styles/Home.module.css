@@ -45,13 +45,13 @@ margin: 10px 0;
 .seeMore {
   background-color: #a5219e !important;
   color: #fff !important;
+  font-size: 18px;
   text-transform: initial !important;
 }
 
 @media screen and (min-width: 759px) {
   .mentors {
 align-items: center;
-/* justify-content: center; */
 width: 100%;	
   }
 

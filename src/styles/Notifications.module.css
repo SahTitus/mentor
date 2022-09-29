@@ -66,7 +66,7 @@
 /* // Top Mentors */
 
 .topMentors__list {
-margin-top: 60px;
+margin: 60px 10px 10px 10px;
 }
 
 .topMentors__list h3 {
@@ -84,6 +84,7 @@ margin-top: 60px;
     margin-left: 15px !important;
     height: 30px !important;
     text-transform: initial !important;
+    margin-bottom: 5px !important;
 }
 
 .cancelRequest{

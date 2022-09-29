@@ -19,7 +19,6 @@ const MenteeCard = ({ name, email, id, image }) => {
       dispatch(disConnect({ id, menteeId: user?.result?._id }));
     } else {
       dispatch(disConnect({ id: mentorLocal?._id, menteeId: id }));
-      console.log('cc')
     }
   };
 
@@ -39,7 +38,7 @@ const MenteeCard = ({ name, email, id, image }) => {
               email: email,
             })
           }
-          to={`/chatRoom/${id}`}
+          to={`/chatRoom/${user?.result?._id}-${id}`}
         >
           <IconButton>
             <Message />

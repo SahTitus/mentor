@@ -32,7 +32,7 @@ export const roomsSlice = createSlice({
 		isLoading: (state) => {
 			state.isLoading = true;
 		},
-		isError: (state, action) => {
+		error: (state, action) => {
 			state.isLoading = false;
 			state.error = action.payload;
 		},

@@ -1,9 +1,4 @@
-import {
-  Add,
-  Menu,
-  NotificationsOutlined,
-  Person,
-} from "@mui/icons-material";
+import { Add, Menu, NotificationsOutlined, Person } from "@mui/icons-material";
 import { Avatar, IconButton, Button } from "@mui/material";
 import React, { useState } from "react";
 import styles from "../styles/Navbar.module.css";
@@ -15,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth";
 import { logoutMentor } from "../redux/mentors";
+import { useStateContex } from "../store/StateProvider";
 
 const listItems = [
   {
@@ -23,7 +19,6 @@ const listItems = [
     add: false,
     link: "/profile",
   },
-
 ];
 
 const Navbar = () => {
@@ -31,6 +26,7 @@ const Navbar = () => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
   const mentor = JSON.parse(localStorage.getItem("mentor"));
+  const { setCurrentId } = useStateContex();
 
   const dispatch = useDispatch();
 
@@ -52,20 +48,13 @@ const Navbar = () => {
           <>
             <Avatar
               className={styles.side__avatar}
-              src={
-                user?.result?.image ||
-                user?.result?.mentorshipDp
-              }
+              src={user?.result?.image || user?.result?.mentorshipDp}
               alt="Juaneme8"
             >
-              {
-                user?.result?.name.charAt(0)}{" "}
+              {user?.result?.name.charAt(0)}{" "}
             </Avatar>
             <div className={styles.side__userInfo}>
-              <p>
-                {mentor?.name ||
-                  user?.result?.name}
-              </p>
+              <p>{mentor?.name || user?.result?.name}</p>
               <span>{mentor?.email || user?.result?.email}</span>
             </div>
           </>
@@ -92,12 +81,8 @@ const Navbar = () => {
           </Link>
         ))}
 
-       
         <Link to="/myMentors">
-          <ListItem
-            button
-            className={`${styles.drawer__listItem} `}
-          >
+          <ListItem button className={`${styles.drawer__listItem} `}>
             <div className={styles.drawer__listIcon}>
               <People />
             </div>
@@ -108,18 +93,13 @@ const Navbar = () => {
         </Link>
         {mentor?._id && (
           <Link to="/addRoom">
-          <ListItem
-            button
-            className={`${styles.drawer__listItem} `}
-          >
-            <div className={styles.drawer__listIcon}>
-              <Add />
-            </div>
-            <div className={styles.drawer__listText}>
-             Create a group
-            </div>
-          </ListItem>
-        </Link>
+            <ListItem button className={`${styles.drawer__listItem} `}>
+              <div className={styles.drawer__listIcon}>
+                <Add />
+              </div>
+              <div className={styles.drawer__listText}>Create a group</div>
+            </ListItem>
+          </Link>
         )}
         <ListItem
           onClick={logOut}
@@ -133,7 +113,7 @@ const Navbar = () => {
         </ListItem>
         {!mentor && (
           <>
-            <Link to="/addMentor">
+            <Link onClick={() => setCurrentId(null)} to="/addMentor">
               <ListItem
                 button
                 className={`${styles.drawer__listItem} ${styles.add__button} `}

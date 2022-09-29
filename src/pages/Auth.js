@@ -56,8 +56,7 @@ const Auth = () => {
     const token = user._tokenResponse.idToken;
     const result = user.user;
     try {
-      dispatch(logWithGoogle(result));
-      navigate(-1);
+      dispatch(logWithGoogle(result), navigate);
     } catch (error) {
       console.log(error);
     }

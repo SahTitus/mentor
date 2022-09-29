@@ -154,6 +154,7 @@ const CreateMentor = () => {
     }
   }, []);
 
+
   return (
     <div className={styles.createMentor}>
       <div className={styles.createMentor__top}>
@@ -161,7 +162,7 @@ const CreateMentor = () => {
         {currentId ? <p>Edit Profile</p> : <p>Become a Mentor</p>}
       </div>
       <div className={styles.title}>
-        {currentId ? null : <p>Create an Account as Mentor</p>}
+        {currentId ? null : <p>Create Mentor's  Account</p>}
       </div>
 
       <form className={styles.form}>

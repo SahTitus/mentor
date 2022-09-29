@@ -17,8 +17,6 @@ function Chat({
 }) {
   const { darkMode } = false;
   const { setRecipientId } = useStateContex();
-  console.log(roomIcon)
-  console.log(receiverInfo)
 
   const avaImg = receiverInfo?.map((rec) => rec?.mentorshipDp || rec?.image) 
 

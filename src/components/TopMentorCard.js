@@ -83,7 +83,7 @@ const TopMentorCard = ({
     setRecipientId(id);
     setChatInfo({ name, image, id });
   };
-  console.log(connected);
+
   return (
     <div className={styles.notif__card}>
       <div className={styles.card__top}>
