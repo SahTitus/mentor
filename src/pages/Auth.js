@@ -8,7 +8,14 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
-import { Box, Button, IconButton, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Dialog,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Auth.module.css";
 import Go from "../images/Go.png";
@@ -34,6 +41,7 @@ const Auth = () => {
   const [user, setUser] = useState(true);
   const [formData, setFormData] = useState(initialState);
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const userProf = JSON.parse(localStorage.getItem("profile"));
 
@@ -53,9 +61,9 @@ const Auth = () => {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const user = await signInWithPopup(auth, provider);
-    const token = user._tokenResponse.idToken;
+
     const result = user.user;
-    console.log(user);
+
     try {
       const loginData = {
         email: result.email,
@@ -63,9 +71,7 @@ const Auth = () => {
         displayName: result.displayName,
       };
       dispatch(logWithGoogle(loginData, navigate));
-
-      // dispatch(authData({ result, token }));
-      // navigate(-1);
+      setLoading(true);
     } catch (error) {
       console.log(error);
     }
@@ -92,13 +98,16 @@ const Auth = () => {
   );
 
   useEffect(() => {
-    if (user1)
+    if (user1) {
       setFormData({
         ...user1,
         confirmPassword: user1.password,
         name: user1.name,
         image: user1.image,
       });
+    }
+
+    if (userProf?.result?._id) setLoading(false);
   }, []);
 
   const handleImage = (e) => {
@@ -125,8 +134,23 @@ const Auth = () => {
     setImage(null);
   };
 
+  const SimpleDialog = (props) => {
+    const { open } = props;
+    return (
+      <Dialog   open={open}>
+        <Box className={styles.loadingState} sx={{ display: "flex", borderRadius: '100px', justifyContent: "center", bgcolor: 'pink' }}>
+          <CircularProgress   />
+        </Box>
+      </Dialog>
+    );
+  };
+
   return (
     <div className={styles.auth}>
+            <SimpleDialog
+        open={loading}
+        // onClose={handleClose}
+      />
       {currentId && (
         <div className={styles.createMentor__top}>
           <ArrowBack

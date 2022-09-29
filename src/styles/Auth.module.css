@@ -79,6 +79,10 @@
     flex: 1;
 	
 }
+/* 
+.loadingState {
+	background-color:#a5219e !important;
+} */
 
 #auth_inputBox{
     display: flex;
