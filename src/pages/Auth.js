@@ -55,8 +55,17 @@ const Auth = () => {
     const user = await signInWithPopup(auth, provider);
     const token = user._tokenResponse.idToken;
     const result = user.user;
+    console.log(user);
     try {
-      dispatch(logWithGoogle(result), navigate);
+      const loginData = {
+        email: result.email,
+        photoURL: result.photoURL,
+        displayName: result.displayName,
+      };
+      dispatch(logWithGoogle(loginData, navigate));
+
+      // dispatch(authData({ result, token }));
+      // navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -136,112 +145,121 @@ const Auth = () => {
           )}
         </div>
         <form className={styles.form}>
-   {!userProf?.result?.uid && (
-    <>
-           <input
-            multiple
-            onChange={handleImage}
-            ref={(input) => (inputFileRef = input)}
-            style={{ display: "none" }}
-            type="file"
-          />
-      {!user && (
-            <div className={styles.select__image}>
-            {!image && (
-              <>
-                <p>Upload cover image</p>
-                <IconButton
-                  onClick={selectImg}
-                  className={styles.imageIcon__wrapper}
+          {!userProf?.result?.uid && (
+            <>
+              <input
+                multiple
+                onChange={handleImage}
+                ref={(input) => (inputFileRef = input)}
+                style={{ display: "none" }}
+                type="file"
+              />
+              {!user && (
+                <div className={styles.select__image}>
+                  {!image && (
+                    <>
+                      <p>Upload cover image</p>
+                      <IconButton
+                        onClick={selectImg}
+                        className={styles.imageIcon__wrapper}
+                      >
+                        <Image className={styles.imageIcon} />
+                      </IconButton>
+                    </>
+                  )}
+                  {image && (
+                    <>
+                      <IconButton
+                        onClick={clearImg}
+                        className={styles.cancelImage}
+                      >
+                        <Clear className={styles.cancelIcon} />
+                      </IconButton>
+                      <img
+                        className={styles.selectedImage}
+                        src={image}
+                        alt=""
+                      />
+                    </>
+                  )}
+                </div>
+              )}
+              {!user && !currentId && (
+                <Box
+                  id={styles.auth_inputBox}
+                  sx={{ display: "flex", alignItems: "center" }}
                 >
-                  <Image className={styles.imageIcon} />
-                </IconButton>
-              </>
-            )}
-            {image && (
-              <>
-                <IconButton onClick={clearImg} className={styles.cancelImage}>
-                  <Clear className={styles.cancelIcon} />
-                </IconButton>
-                <img className={styles.selectedImage} src={image} alt="" />
-              </>
-            )}
-          </div>
-      )}
-          {!user && !currentId && (
-            <Box
-              id={styles.auth_inputBox}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-              <TextField
-                onChange={handleChange}
-                id={styles.auth_input}
-                required
-                label="First name"
-                variant="outlined"
-                value={formData.firstName}
-                className={styles.auth_input}
-                name="firstName"
-              />
-            </Box>
-          )}
+                  <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                  <TextField
+                    onChange={handleChange}
+                    id={styles.auth_input}
+                    required
+                    label="First name"
+                    variant="outlined"
+                    value={formData.firstName}
+                    className={styles.auth_input}
+                    name="firstName"
+                  />
+                </Box>
+              )}
 
-          {!user && !currentId && (
-            <Box
-              id={styles.auth_inputBox}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-              <TextField
-                onChange={handleChange}
-                id={styles.auth_input}
-                required
-                label="Last name"
-                variant="outlined"
-                className={styles.auth_input}
-                name="lastName"
-                value={formData.lastName}
-              />
-            </Box>
-          )}
+              {!user && !currentId && (
+                <Box
+                  id={styles.auth_inputBox}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                  <TextField
+                    onChange={handleChange}
+                    id={styles.auth_input}
+                    required
+                    label="Last name"
+                    variant="outlined"
+                    className={styles.auth_input}
+                    name="lastName"
+                    value={formData.lastName}
+                  />
+                </Box>
+              )}
 
-          {currentId && (
-            <Box
-              id={styles.auth_inputBox}
-              sx={{ display: "flex", alignItems: "center" }}
-            >
-              <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-              <TextField
-                onChange={handleChange}
-                id={styles.auth_input}
-                required
-                label="Full Name"
-                variant="outlined"
-                value={formData.name}
-                className={styles.auth_input}
-                name="name"
-              />
-            </Box>
+              {currentId && (
+                <Box
+                  id={styles.auth_inputBox}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                  <TextField
+                    onChange={handleChange}
+                    id={styles.auth_input}
+                    required
+                    label="Full Name"
+                    variant="outlined"
+                    value={formData.name}
+                    className={styles.auth_input}
+                    name="name"
+                  />
+                </Box>
+              )}
+              <Box
+                id={styles.auth_inputBox}
+                sx={{ display: "flex", alignItems: "center" }}
+              >
+                <AlternateEmail
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  onChange={handleChange}
+                  id={styles.auth_input}
+                  required
+                  label="Email"
+                  name="email"
+                  value={formData.email}
+                  variant="outlined"
+                  className={styles.auth_input}
+                />
+              </Box>
+            </>
           )}
-          <Box
-            id={styles.auth_inputBox}
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            <AlternateEmail sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-            <TextField
-              onChange={handleChange}
-              id={styles.auth_input}
-              required
-              label="Email"
-              name="email"
-              value={formData.email}
-              variant="outlined"
-              className={styles.auth_input}
-            />
-          </Box>
-    </>
-   )}
           {!currentId && (
             <Box
               id={styles.auth_inputBox}
@@ -302,7 +320,7 @@ const Auth = () => {
             Save
           </Button>
         )}
-        { !currentId && (
+        {!currentId && (
           <>
             <p className={styles.terms}>
               By signing up your`re agree to our <span>Terms & Conditions</span>{" "}

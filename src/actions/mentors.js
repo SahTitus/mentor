@@ -9,7 +9,6 @@ import {
   addMentor,
   update,
   deleteMentor,
-  connect,
   removeMentee,
 } from "../redux/mentors";
 

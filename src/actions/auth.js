@@ -40,7 +40,7 @@ export const logWithGoogle = (formData, navigate) => async (dispatch) => {
     const { data } = await api.logWithGoogle(formData);
 
     dispatch(authData(data));
-
+    console.log('yes')
     navigate("/");
   } catch (error) {
     console.error(error);
