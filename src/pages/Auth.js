@@ -439,7 +439,7 @@ const Auth = () => {
             </Button>
 
             <p className={styles.login__newUser}>
-              {!user ? "Joined us before?" : "New to Upay?"}
+              {!user ? "Joined us before?" : "Have no account?"}
               <span onClick={() => setUser((prevState) => !prevState)}>
                 {!user && !currentId ? "Sign In" : "Sign Up"}
               </span>
