@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://mentor-engine.vercel.app"});
+const API = axios.create({ baseURL: "http://localhost:5000"});
 
 // const url = "http://localhost:5000"
 // "https://mentor-engine.vercel.app"
@@ -16,9 +16,8 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-
-
 export const fetchMentors = () => API.get(`/mentors`);
+export const fetchMentorsBySearch = (searchQuery) => API.get(`/mentors/search?searchQuery=${searchQuery }`);
 export const fetchMentor = (id) => API.get(`/mentors/${id}`);
 export const createMentor = (newMentor) => API.post(`/mentors`, newMentor);
 export const updateMentor = (id, updatedMentor) => API.patch(`/mentors/${id}/update`, updatedMentor);
@@ -29,10 +28,13 @@ export const deleteMentee = (id) => API.delete(`/mentors/${id}/removeMentee`);
 
 export const fetchMessages = (id) => API.get(`/messages/${id}`);
 export const sendMessage = (id, messageData) => API.post(`/messages/${id}/sendMessage`, messageData);
+export const deleteMessage = (id) => API.delete(`/messages/${id}/delete`);
 
 export const fetchRooms = (id) => API.get(`/rooms/${id}`);
 export const fetchRoom = (id) => API.get(`/rooms/${id}/getRoom`);
 export const createRoom = (room) => API.post(`/rooms/createRoom`, room);
+export const updateRoom = (id, updatedRoom) => API.patch(`/rooms/${id}/update`, updatedRoom);
+export const deleteRoom = (id) => API.delete(`/rooms/${id}/delete`);
 
 export const fetchNotifications = (id) => API.get(`notifications/${id}`);
 export const sendRequest = (request) => API.post(`notifications/sendRequest`, request);

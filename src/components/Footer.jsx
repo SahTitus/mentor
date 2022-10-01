@@ -1,42 +1,29 @@
 import { useState } from "react";
 import "../styles/BottomNavigation.css";
-import {
-  HomeOutlined,
-
-  HomeRounded,
-} from "@mui/icons-material";
+import { HomeOutlined, HomeRounded } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { ChatSquare, Heart, Person } from "react-bootstrap-icons";
-// import { useStateContex } from "../store/StateProvider";
 
 const Footer = () => {
   const [isHomeClicked, setIsHomeClicked] = useState(true);
   const [isChatClicked, setIsChatClicked] = useState(false);
-  //   const [isHallsClicked, setIsHallsClicked] = useState(false);
-
-  const { darkMode } = false;
 
   const toggleHomelClick = () => {
     setIsHomeClicked(true);
-    // setIsHallsClicked(false);
+
     setIsChatClicked(false);
   };
   const toggleChatClick = () => {
     setIsChatClicked(true);
-    // setIsHallsClicked(false);
+
     setIsHomeClicked(false);
   };
-  //   const toggleHallsClick = () => {
-  //     setIsChatClicked(false);
-  //     setIsHallsClicked(true);
-  //     setIsHomeClicked(false);
-  //   };
 
   return (
-    <div className={`btmNav ${darkMode && "btmNavDark"}`}>
+    <div className={`btmNav`}>
       <div className="btmNav__container">
         <NavLink
-          className={`btmNav__option ${darkMode && "btmNav__optionDark"}`}
+          className={`btmNav__option `}
           style={({ isActive }) => {}}
           to={"/"}
         >
@@ -47,7 +34,7 @@ const Footer = () => {
           )}
         </NavLink>
         <NavLink
-          className={`btmNav__option ${darkMode && "btmNav__optionDark"}`}
+          className={`btmNav__option `}
           style={({ isActive }) => {}}
           to={"/mymentors"}
         >
@@ -55,7 +42,7 @@ const Footer = () => {
         </NavLink>
 
         <NavLink
-          className={`btmNav__option ${darkMode && "btmNav__optionDark"}`}
+          className={`btmNav__option `}
           style={({ isActive }) => {}}
           to={"/chats"}
         >
@@ -66,7 +53,7 @@ const Footer = () => {
           )}
         </NavLink>
         <NavLink
-          className={`btmNav__option ${darkMode && "btmNav__optionDark"}`}
+          className={`btmNav__option `}
           style={({ isActive }) => {}}
           to={"/profile"}
         >

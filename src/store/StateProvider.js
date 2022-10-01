@@ -10,6 +10,7 @@ export const StateProvider = ({ children }) => {
 
   const [replyingTo, setReplyingTo] = useState(false);
   const [focus, setFocus] = useState(false);
+  const [getSearchTerm, setGetSearchTerm] = useState("");
   const [currentId, setCurrentId] = useState(null);
   const [chatInfo, setChatInfo] = useState({});
   const [recipientId, setRecipientId] = useState(null);
@@ -27,7 +28,8 @@ export const StateProvider = ({ children }) => {
         chatInfo,
         recipientId,
         currentId,
-     
+        getSearchTerm,
+        setGetSearchTerm,
         setCurrentId,
         setRecipientId,
         setChatInfo,

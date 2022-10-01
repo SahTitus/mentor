@@ -1,7 +1,6 @@
 import { ArrowBack, DeleteForever } from "@mui/icons-material";
 import { Box, CircularProgress, IconButton } from "@mui/material";
 import React, { useEffect } from "react";
-import { Trash2 } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchNotifications } from "../actions/notifications";
@@ -22,8 +21,6 @@ const Notifications = () => {
   const feeds = notifications
     ?.slice()
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-
-  console.log(feeds.length);
 
   const id = user?.result?._id;
   useEffect(() => {

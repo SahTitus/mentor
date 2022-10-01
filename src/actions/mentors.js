@@ -4,12 +4,14 @@ import {
   isLoading,
   getMentors,
   getMentor,
+  // getMentorSearch,
   getMentees,
   error,
   addMentor,
   update,
   deleteMentor,
   removeMentee,
+  queryMentors,
 } from "../redux/mentors";
 
 export const fetchMentors = () => async (dispatch) => {
@@ -29,6 +31,17 @@ export const fetchMentor = (id) => async (dispatch) => {
     const { data } = await api.fetchMentor(id);
 
     dispatch(getMentor(data));
+  } catch (error) {
+    dispatch(error(error));
+  }
+};
+
+export const fetchMentorsBySearch = (searchQuery) => async (dispatch) => {
+  dispatch(isLoading());
+  try {
+    const { data } = await api.fetchMentorsBySearch(searchQuery);
+
+    dispatch(queryMentors(data));
   } catch (error) {
     dispatch(error(error));
   }
@@ -77,8 +90,6 @@ export const disConnect = (id, menteeId) => async (dispatch) => {
     console.error(error);
   }
 };
-
-// Check this 
 
 export const deleteMento = (id) => async (dispatch) => {
   try {

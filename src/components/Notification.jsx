@@ -7,12 +7,13 @@ import styles from "../styles/Notifications.module.css";
 
 const Notification = ({ name, id, image, mentorId, requestId, connected }) => {
   const dispatch = useDispatch();
-  const confirmed = false;
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   const rqtData = {
     notificationId: id,
     mentorId: mentorId,
     menteeId: requestId,
+    adminId: user?.result?._id,
   };
 
   const confirmRqt = () => {
@@ -29,11 +30,7 @@ const Notification = ({ name, id, image, mentorId, requestId, connected }) => {
           <p>{name}</p>
           <span>Sent you a mentor request</span>
         </div>
-        {confirmed && (
-          <div className={styles.buttom}>
-            <p>Confirmed</p>
-          </div>
-        )}
+ 
         <div className={styles.left}>
           <IconButton onClick={() => dispatch(deleteRequest(id))}>
             <Clear />

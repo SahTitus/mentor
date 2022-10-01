@@ -43,7 +43,7 @@ const CreateMentor = () => {
   const mentor = JSON.parse(localStorage.getItem("mentor"));
   const [formData, setFormData] = useState(initialState);
   const [image, setImage] = useState(null);
-  const [hasSpace, setHasSpace] = useState(false);
+  const [ setHasSpace] = useState(false);
 
   const { currentId } = useStateContex();
   const {  isError } = useSelector((state) => state.auth);
@@ -104,7 +104,6 @@ const CreateMentor = () => {
     if (file["type"].split("/")[0] !== "image") {
       alert("Hehehe 😆 file is not an image");
     }
-    // setFileToBase(file);
   };
 
   useEffect(() => {

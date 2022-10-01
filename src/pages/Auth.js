@@ -76,7 +76,7 @@ const Auth = () => {
       dispatch(logWithGoogle(loginData, navigate));
       setLoading(true);
     } catch (error) {
-      console.log(error);
+     return error
     }
   };
 

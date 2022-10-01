@@ -16,19 +16,18 @@ export const fetchNotifications = (id) => async (dispatch) => {
 export const sendRequest = (request) => async (dispatch) => {
   try {
     await api.sendRequest(request);
-    // dispatch(update(data));
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+     dispatch(error(err));
   }
 };
 export const cancelRequest = (ids) => async (dispatch) => {
   try {
     const { data } = await api.cancelRequest(ids);
-    console.log(data)
+
     dispatch(createRequest(data));
 
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+     dispatch(error(err));
   }
 };
 
@@ -36,13 +35,10 @@ export const acceptRequest= (id, room) => async (dispatch) => {
   try {
     const {data} = await api.acceptRequest(room);
 
-    console.log(room)
-    console.log(id)
-
     dispatch(approved(data));
    if (id) dispatch(removeMentee(id));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    dispatch(error(err));
   }
 };
 
@@ -52,7 +48,7 @@ export const deleteRequest = (id) => async (dispatch) => {
     await api.deleteRequest(id);
 
     dispatch(deleteRqt(id));
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+     dispatch(error(err));
   }
 };

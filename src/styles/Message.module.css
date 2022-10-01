@@ -78,9 +78,8 @@ margin-right: 15px;
     /* margin: 5px; */
 }
 
-.timestamp p{
-   font-weight: 500;
-   font-size: 16px;
+.timestamp span{
+   font-size: 13px;
 }
 
 .messageCardBoxText {
@@ -95,6 +94,14 @@ margin-right: 15px;
 
 .replyingTo{
     color: #1fbb5d;
+}
+
+.moreHoriz {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-right: 5px;
 }
 
 .messageCardBtm {

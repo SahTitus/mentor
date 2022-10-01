@@ -1,5 +1,5 @@
 import * as api from "../api/index.js";
-import { isLoading, getRooms, getRoom, error, update, addRoom } from "../redux/rooms";
+import { isLoading, getRooms, getRoom, error, update, addRoom, deleteGroup } from "../redux/rooms";
 
 export const fetchRooms = (id) => async (dispatch) => {
   dispatch(isLoading());
@@ -31,24 +31,22 @@ export const createRoom = (room) => async (dispatch) => {
   }
 };
 
-// export const updateRoom= (id, room) => async (dispatch) => {
-//   try {
-//     const updatedRoom = await api.updateRoom(id, room);
+export const updateRoom= (id, room) => async (dispatch) => {
+  try {
+    const updatedRoom = await api.updateRoom(id, room);
 
-//     dispatch(update(updatedRoom));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+    dispatch(update(updatedRoom));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-// Check this
+export const deleteRoom = (id) => async (dispatch) => {
+  try {
+    await api.deleteRoom(id);
 
-// export const deleteChat = (id) => async (dispatch) => {
-//   try {
-//     await api.deleteChat(id);
-
-//     dispatch(deleteChat(id));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+    dispatch(deleteGroup(id));
+  } catch (error) {
+    console.error(error);
+  }
+};

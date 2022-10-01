@@ -11,6 +11,7 @@ import CreateMentor from "./pages/CreateMentor";
 import MyMentors from "./pages/MyMentors";
 import Notifications from "./pages/Notifications";
 import SeeMore from "./pages/SeeMore";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/chats" element={<Chats />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/addMentor" element={<CreateMentor />} />
             <Route path="/chatRoom/:id" element={<ChatRoom />} />
             <Route path="/addRoom" element={<AddRoom />} />

@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   mentors: [],
   mentees: [],
+  queriedMentors: [],
   mentor: {},
   error: [],
 };
@@ -19,6 +20,10 @@ export const mentorsSlice = createSlice({
     },
     getMentors: (state, action) => {
       state.mentors = action.payload;
+      state.isLoading = false;
+    },
+    queryMentors: (state, action) => {
+      state.queriedMentors = action.payload;
       state.isLoading = false;
     },
     getMentees: (state, action) => {
@@ -51,7 +56,6 @@ export const mentorsSlice = createSlice({
       state.mentors = state.mentors.map((mentor) => mentor.mentees.filter((id) => id !== action.payload));
     },
     update: (state, action) => {
-		console.log(action.payload)
       state.mentors = state.mentors.map((mentor) =>
         mentor._id === action.payload._id ? action.payload : mentor
       );
@@ -81,6 +85,7 @@ export const {
   update,
   detectLink,
   connect,
+  queryMentors,
   logoutMentor,
 } = mentorsSlice.actions;
 export default mentorsSlice.reducer;

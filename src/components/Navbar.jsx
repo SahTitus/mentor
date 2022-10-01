@@ -36,9 +36,7 @@ const Navbar = () => {
 
   const logOut = () => {
     dispatch(logout());
-    dispatch(logoutMentor());
     window.location.reload(true);
-    // closeDrawer()
   };
 
   const sideList = () => (

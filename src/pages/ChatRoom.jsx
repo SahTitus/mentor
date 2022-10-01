@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Avatar, Button, TextareaAutosize } from "@mui/material";
 import { useStateContex } from "../store/StateProvider";
-import { Camera, SendFill } from "react-bootstrap-icons";
+import {  SendFill } from "react-bootstrap-icons";
 import Message from "../components/Message";
 import { fetchMessages, sendMessage } from "../actions/messages";
 import { fetchRoom } from "../actions/chatRooms";
@@ -25,8 +25,6 @@ const ChatRoom = () => {
   const { messages } = useSelector((state) => state.messages);
   const { room } = useSelector((state) => state.rooms);
   const { chatInfo, setChatInfo, recipientId } = useStateContex();
-
-
 
   const { darkMode, focus } = false;
 
@@ -50,9 +48,6 @@ const ChatRoom = () => {
     return () => clearInterval(interval);
   }, []);
 
-  //   const disableReply = !reply.trim();
-  //   const disablemessage = !message.trim();
-
   const messagesRef = useRef();
 
   const handleChange = (e) => {
@@ -62,10 +57,10 @@ const ChatRoom = () => {
   const chatData = {
     message: message,
     image: "",
-    senderId: user.result._id,
+    senderId: user?.result._id,
     mentorId: mentorLocal?._id,
     recipientId: recipientId,
-    senderName: user?.result?.name,
+    senderName: mentorLocal?.name || user?.result?.name,
     roomDbId: chatInfo?._id,
   };
 
@@ -122,7 +117,6 @@ const ChatRoom = () => {
       <div className={styles.chatroom__body}>
         <div ref={messagesRef} />
         <div className={styles.messages}>
-          {/* { {sortmessages?.map((message, i) => (  */}
           {messages?.map((message, i) => (
             <Message
               key={i + message._id}
@@ -132,10 +126,10 @@ const ChatRoom = () => {
               message={message.message}
               timestamp={message.createdAt}
               image={message.image}
-              creatorName={message.creatorName}
+              senderName={message.senderName}
+              isGroup={room?.isGroup}
             />
           ))}
-          {/* ))}  */}
         </div>
       </div>
       <div className={styles.scrollView} ref={scrollRef} />
@@ -143,9 +137,9 @@ const ChatRoom = () => {
         className={`${styles.chatroom__footer} ${focused && styles.focused}`}
       >
         <div className={`${styles.chatroom__form}`}>
-          <div className={styles.footerBotmLeft}>
+          {/* <div className={styles.footerBotmLeft}>
             <Camera className={styles.footerCamera} />
-          </div>
+          </div> */}
           <form onSubmit={handleSubmit}>
             <TextareaAutosize
               className={styles.chatroom__textarea}
@@ -161,31 +155,12 @@ const ChatRoom = () => {
               multiline="multiline"
             />
           </form>
-          <Button onClick={handleSubmit} className={styles.sendButton}>
-            <SendFill className={styles.sendIcon} />
-          </Button>
+       {!!message.length && (
+           <Button onClick={handleSubmit} className={styles.sendButton}>
+           <SendFill className={styles.sendIcon} />
+         </Button>
+       )}
         </div>
-
-        {/* {(focused || !!message.length > 0 || reply.length > 0) && (
-          <div className={`${styles.footerBotm} `}>
-            <div className={styles.footerBotmLeft}>
-              <Camera className={styles.footerCamera} />
-            </div>
-  
-            {!replyingTo && !isReply && (
-              <button
-                onClick={handleSubmit}
-                // disabled={disablemessage}
-                type="button"
-                className={`${styles.button}
-
-                `}
-              >
-                message
-              </button>
-            )}
-          </div>
-        )} */}
       </div>
     </div>
   );
