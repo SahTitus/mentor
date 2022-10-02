@@ -27,7 +27,7 @@ const MentorCard = ({
   const user = JSON.parse(localStorage.getItem("profile"));
   const mentor = JSON.parse(localStorage.getItem("mentor"));
 
-  const { setRecipientId, setProfileId, setChatInfo } = useStateContex();
+  const { setRecipientId, setChatInfo } = useStateContex();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,7 +82,6 @@ const MentorCard = ({
   };
 
   const viewProfile = () => {
-    setProfileId(myMentorId)
     navigate(`/profile/${myMentorId}`); 
   }
 
@@ -101,6 +100,7 @@ const MentorCard = ({
       <div  onClick={viewProfile} className={styles.image__wrapper}>
         {" "}
         <img
+         onClick={viewProfile} 
           className={styles.image}
           src={`${
             image ||
@@ -111,8 +111,8 @@ const MentorCard = ({
       </div>
 
       <div className={styles.info}>
-        <p className={styles.title}>{program}</p>
-        <div className={styles.thread__wrapper}>
+        <p  onClick={viewProfile}  className={styles.title}>{program}</p>
+        <div  onClick={viewProfile} className={styles.thread__wrapper}>
           {" "}
           <hr className={styles.thread} />
         </div>
