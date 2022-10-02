@@ -45,8 +45,7 @@ const Auth = () => {
   const [hasSpace, setHasSpace] = useState(false);
 
   const userProf = JSON.parse(localStorage.getItem("profile"));
-  const {  isError } = useSelector((state) => state.auth);
-
+  const { isError } = useSelector((state) => state.auth);
 
   const { currentId } = useStateContex();
 
@@ -76,7 +75,7 @@ const Auth = () => {
       dispatch(logWithGoogle(loginData, navigate));
       setLoading(true);
     } catch (error) {
-     return error
+      return error;
     }
   };
 
@@ -86,12 +85,10 @@ const Auth = () => {
     inputFileRef.click();
   };
 
-
   const saveChanges = () => {
-    dispatch(updateUser(currentId, { ...formData, image }, navigate))
-    setImage(null)
-    
-  }
+    dispatch(updateUser(currentId, { ...formData, image }, navigate));
+    setImage(null);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -113,9 +110,8 @@ const Auth = () => {
         ...user1,
         confirmPassword: user1.password,
         name: user1.name,
-      
       });
-      setImage( { image: user1.image || user1.mentorshipDp})
+      setImage({ image: user1.image || user1.mentorshipDp });
     }
 
     if (userProf?.result?._id) setLoading(false);
@@ -185,30 +181,24 @@ const Auth = () => {
   const doesMatch =
     formData?.password !== formData?.confirmPassword &&
     formData?.confirmPassword;
-  const disableBtn = 
+  const disableBtn =
     !formData?.email?.length > 0 ||
     !formData?.email?.trim() ||
     !formData?.password?.length > 0 ||
     !formData?.password?.trim() ||
     (!user &&
-      (
-        !formData?.lastName?.length > 0 ||
+      (!formData?.lastName?.length > 0 ||
         !formData?.firstName?.length > 0 ||
-
-
         !formData?.confirmPassword)) ||
     hasSpace ||
     doesMatch;
 
-
-    const isUserError = isError?.response?.data?.type === 'msg'
-    const userError = isError?.response?.data?.message
+  const isUserError = isError?.response?.data?.type === "msg";
+  const userError = isError?.response?.data?.message;
 
   return (
     <div className={styles.auth}>
-      <SimpleDialog
-        open={loading}
-      />
+      <SimpleDialog open={loading} />
       {currentId && (
         <div className={styles.createMentor__top}>
           <ArrowBack
@@ -236,9 +226,9 @@ const Auth = () => {
                 style={{ display: "none" }}
                 type="file"
               />
-              {(!user || currentId )&& (
+              {(!user || currentId) && (
                 <div className={styles.select__image}>
-                  {(!image?.length) && (
+                  {!image?.length && (
                     <>
                       <p>Upload cover image</p>
                       <IconButton
@@ -266,13 +256,12 @@ const Auth = () => {
                   )}
                 </div>
               )}
-              {isError?.message  && (
+              {isError?.message && (
                 <div className={styles.error}>
-                  <p> {isUserError ? userError : 'Something went wrong'}</p>
+                  <p> {isUserError ? userError : "Something went wrong"}</p>
                 </div>
               )}
               {!user && !currentId && (
-                
                 <Box
                   id={styles.auth_inputBox}
                   sx={{ display: "flex", alignItems: "center" }}
@@ -350,7 +339,11 @@ const Auth = () => {
           {!currentId && (
             <Box
               id={styles.auth_inputBox}
-              sx={{ display: "flex", alignItems: "center", position:'relative'}}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+              }}
             >
               <Lock sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
@@ -364,9 +357,10 @@ const Auth = () => {
                 name="password"
                 value={formData.password}
                 error={passError}
-  
                 helperText={
-                  passError ? "Password must be at least 6 characters long" : null
+                  passError
+                    ? "Password must be at least 6 characters long"
+                    : null
                 }
               />
               <IconButton
@@ -374,9 +368,9 @@ const Auth = () => {
                 onClick={toggleShowPassword}
               >
                 {!showPassword ? (
-                  <Visibility   className={styles.showPasswordIcon}/>
+                  <Visibility className={styles.showPasswordIcon} />
                 ) : (
-                  <VisibilityOff   className={styles.showPasswordIcon} />
+                  <VisibilityOff className={styles.showPasswordIcon} />
                 )}
               </IconButton>
             </Box>
@@ -406,7 +400,9 @@ const Auth = () => {
 
         {currentId && (
           <Button
-            className={`${styles.signIn__button}  ${disableBtn && styles.disableBtn}`}
+            className={`${styles.signIn__button}  ${
+              disableBtn && styles.disableBtn
+            }`}
             onClick={saveChanges}
             disabled={disableBtn}
           >
@@ -420,7 +416,13 @@ const Auth = () => {
               and <span>Privacy Policy</span>
             </p>
 
-            <Button        disabled={disableBtn} className={`${styles.signIn__button} ${disableBtn && styles.disableBtn}`} onClick={handleSubmit}>
+            <Button
+              disabled={disableBtn}
+              className={`${styles.signIn__button} ${
+                disableBtn && styles.disableBtn
+              }`}
+              onClick={handleSubmit}
+            >
               {user ? "Sign In" : "Sign Up"}
             </Button>
             <div className={styles.divider}>
@@ -431,7 +433,6 @@ const Auth = () => {
             <Button
               className={styles.signInWithGoogle__button}
               onClick={signInWithGoogle}
-
             >
               <img className={styles.googleLogo} src={Go} alt="" />
               Continue with Google
@@ -439,6 +440,7 @@ const Auth = () => {
 
             <p className={styles.login__newUser}>
               {!user ? "Joined us before?" : "New to Rabbichat?"}
+
               <span onClick={() => setUser((prevState) => !prevState)}>
                 {!user && !currentId ? "Sign In" : "Sign Up"}
               </span>
