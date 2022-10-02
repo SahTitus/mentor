@@ -29,6 +29,7 @@ export const StateProvider = ({ children }) => {
         recipientId,
         currentId,
         getSearchTerm,
+
         setGetSearchTerm,
         setCurrentId,
         setRecipientId,

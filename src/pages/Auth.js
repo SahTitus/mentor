@@ -320,7 +320,6 @@ const Auth = () => {
                     onChange={handleChange}
                     id={styles.auth_input}
                     required
-                    label="Full Name"
                     variant="outlined"
                     value={formData.name}
                     className={styles.auth_input}
@@ -439,7 +438,7 @@ const Auth = () => {
             </Button>
 
             <p className={styles.login__newUser}>
-              {!user ? "Joined us before?" : "New to Upay?"}
+              {!user ? "Joined us before?" : "New to Rabbichat?"}
               <span onClick={() => setUser((prevState) => !prevState)}>
                 {!user && !currentId ? "Sign In" : "Sign Up"}
               </span>

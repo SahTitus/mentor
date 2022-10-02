@@ -3,16 +3,12 @@ import { Box, Button, IconButton, TextField } from "@mui/material";
 
 import React, { useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 import styles from "../styles/CreateMentor.module.css";
 import { createRoom, updateRoom } from "../actions/chatRooms";
 import { useStateContex } from "../store/StateProvider";
-
-const initialState = {
-  groupName: "",
-};
 
 const AddRoom = () => {
   const user = JSON.parse(localStorage.getItem("profile"));

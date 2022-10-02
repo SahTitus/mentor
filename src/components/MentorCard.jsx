@@ -2,7 +2,7 @@ import { Avatar, Button, IconButton } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/MentorCard.module.css";
 import { MailOutlined } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStateContex } from "../store/StateProvider";
 import { PersonFill } from "react-bootstrap-icons";
@@ -27,7 +27,7 @@ const MentorCard = ({
   const user = JSON.parse(localStorage.getItem("profile"));
   const mentor = JSON.parse(localStorage.getItem("mentor"));
 
-  const { setRecipientId, setChatInfo } = useStateContex();
+  const { setRecipientId, setProfileId, setChatInfo } = useStateContex();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -81,6 +81,11 @@ const MentorCard = ({
     );
   };
 
+  const viewProfile = () => {
+    setProfileId(myMentorId)
+    navigate(`/profile/${myMentorId}`); 
+  }
+
   const openChatRoom = () => {
     if (!user?.result?._id) {
       navigate("/auth");
@@ -93,7 +98,7 @@ const MentorCard = ({
 
   return (
     <div className={styles.mentorCard}>
-      <div className={styles.image__wrapper}>
+      <div  onClick={viewProfile} className={styles.image__wrapper}>
         {" "}
         <img
           className={styles.image}
@@ -112,7 +117,7 @@ const MentorCard = ({
           <hr className={styles.thread} />
         </div>
         <div className={styles.card__bottom}>
-          <div className={styles.card__left}>
+          <div onClick={viewProfile} className={styles.card__left}>
             <Avatar
               src={`${
                 image ||
@@ -128,18 +133,17 @@ const MentorCard = ({
             </p>
           ) : (
             <div className={styles.card__right}>
-         
-                <IconButton   onClick={openChatRoom}>
-                  {" "}
-                  <MailOutlined className={styles.ar} />
-                </IconButton>
-             
+              <IconButton onClick={openChatRoom}>
+                {" "}
+                <MailOutlined className={styles.ar} />
+              </IconButton>
+
               {pending ? (
                 <Button
                   onClick={cancelRqt}
                   className={`${styles.connectBtn} ${styles.cancelRequest}`}
                 >
-                  Cancel
+                  Cancel Request
                 </Button>
               ) : (
                 <>

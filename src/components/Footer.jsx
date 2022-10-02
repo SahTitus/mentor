@@ -55,7 +55,7 @@ const Footer = () => {
         <NavLink
           className={`btmNav__option `}
           style={({ isActive }) => {}}
-          to={"/profile"}
+          to={"/profile/1001"}
         >
           <Person className="navBtm__icon" />
         </NavLink>

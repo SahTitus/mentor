@@ -53,6 +53,10 @@ const TopMentor = ({
     });
   }, [connectedMentees, dispatch, pendingMentees, user?.result?._id]);
 
+  const viewProfile = () => {
+    navigate(`/profile/${myMentorId}`); 
+  }
+
   const requestData = {
     requestId: user?.result?._id,
     image: mentor?.image || user?.result?.image,
@@ -94,12 +98,12 @@ const TopMentor = ({
 
   return (
     <div className={styles.topMentor}>
-      <div className={styles.text}>
+      <div onClick={viewProfile} className={styles.text}>
         {" "}
         <p className={styles.name}>{name}</p>
         <p className={styles.course}>{course}</p>
       </div>
-      <div className={styles.img__wrapper}>
+      <div onClick={viewProfile} className={styles.img__wrapper}>
         <img className={styles.img} src={image} alt="" />
       </div>
       {id === mentor?.userId ? (
@@ -118,7 +122,7 @@ const TopMentor = ({
               onClick={cancelRqt}
               className={`${styles.connectBtn} ${styles.cancelRequest}`}
             >
-              Cancel
+              Cancel request
             </Button>
           ) : (
             <>

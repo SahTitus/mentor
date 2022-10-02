@@ -13,7 +13,9 @@ import Notifications from "./pages/Notifications";
 import SeeMore from "./pages/SeeMore";
 import SearchPage from "./pages/SearchPage";
 
+
 function App() {
+
   return (
     <div className="app">
       <BrowserRouter>
@@ -26,7 +28,7 @@ function App() {
             <Route path="/addMentor" element={<CreateMentor />} />
             <Route path="/chatRoom/:id" element={<ChatRoom />} />
             <Route path="/addRoom" element={<AddRoom />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path={'profile/:id' } element={<Profile />} />
             <Route path="/mymentors" element={<MyMentors />} />
             <Route path="/seemore" element={<SeeMore />} />
             <Route path="/notifications" element={<Notifications />} />

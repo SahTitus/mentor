@@ -76,3 +76,36 @@ color: #fff !important;
 .edit {
     color: #fff;   
 }
+
+.mentorDetails {
+    display: flex;
+	flex-direction: column;
+	border: 1px solid rgb(218, 215, 215);
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	padding: 20px;
+	margin: 20px;
+    min-height: 300px;
+}
+
+.mentorDetails p {
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 20px;
+    margin: 15px 10px;
+    color: rgb(34, 59, 59);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: 600;
+}
+
+.mentorDetails p span {
+    font-weight: 200;
+    color: #633485;
+}
+
+.caretIcon {
+    margin: 6px 0;
+}
