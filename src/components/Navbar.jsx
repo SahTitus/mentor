@@ -16,7 +16,7 @@ const listItems = [
     listIcon: <Person />,
     listText: "Profile",
     add: false,
-    link: "/profile",
+    link: "/profile/1001",
   },
 ];
 
@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
   const mentor = JSON.parse(localStorage.getItem("mentor"));
-  const { setCurrentId } = useStateContex();
+  const { setCurrentId, setChatInfo } = useStateContex();
 
   const dispatch = useDispatch();
 
@@ -89,7 +89,7 @@ const Navbar = () => {
           </ListItem>
         </Link>
         {mentor?._id && (
-          <Link onClick={() => setCurrentId(null)} to="/addRoom">
+          <Link onClick={() =>  setChatInfo({})} to="/addRoom">
             <ListItem button className={`${styles.drawer__listItem} `}>
               <div className={styles.drawer__listIcon}>
                 <Add />
@@ -111,7 +111,6 @@ const Navbar = () => {
             <div className={styles.drawer__listText}>Log out</div>
           </ListItem>
         )}
-
         {!mentor && user?.result?._id && (
           <>
             <Link onClick={() => setCurrentId(null)} to="/addMentor">
