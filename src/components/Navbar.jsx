@@ -16,7 +16,7 @@ const listItems = [
     listIcon: <Person />,
     listText: "Profile",
     add: false,
-    link: "/profile",
+    link: "/profile/1001",
   },
 ];
 
