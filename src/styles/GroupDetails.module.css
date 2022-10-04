@@ -1,0 +1,99 @@
+.groupDetails {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 70px;
+  user-select: none !important;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none !important;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  color: rgb(24, 23, 23);
+  padding: 5px 3px;
+}
+
+.topBar h4 {
+  margin-left: 5px;
+}
+
+.roomInfo {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.roomIcon {
+  height: 100px !important;
+  width: 100px !important;
+}
+
+.roomInfo h3 {
+  margin: 10px 5px 0 0;
+}
+
+.buttonsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.button {
+  background-color: #a5219e !important;
+  margin: 0 10px !important;
+  width: 120px;
+  color: #fff !important;
+  text-transform: initial !important;
+  display: flex !important;
+  font-size: 14px !important;
+}
+
+.members {
+  margin-top: 70px;
+  padding: 10px;
+}
+
+.memberCard {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid rgb(221, 218, 218);
+  margin-top: 10px;
+}
+
+.member__avatar {
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.memberInfo {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.memberInfo p {
+  font-weight: 500;
+}
+
+.noMem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+}
+
+.removeMem {
+  display: none;
+}

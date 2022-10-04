@@ -1,29 +1,72 @@
 .myMentors {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.myMentors__container{
-    display: flex;
-    flex-direction: column;
-    margin-top: 70px;
+.myMentors__container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
 }
 
 .noData {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 40vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
 }
 
 .exploreBtn {
-    background-color: #633485 !important;
-    color: #fff !important;
-    text-transform: capitalize !important;
-    margin-top: 15px !important;
+  background-color: #633485 !important;
+  color: #fff !important;
+  text-transform: capitalize !important;
+  margin-top: 15px !important;
 }
 
 .profile__arrowBack {
-color: #fff !important;
+  color: #fff !important;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  color: rgb(24, 23, 23);
+  padding: 5px 3px;
+}
+
+.memberCard {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid rgb(221, 218, 218);
+  margin-top: 10px;
+}
+
+.member__avatar {
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.memberInfo {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.memberInfo p {
+  font-weight: 500;
+}
+
+.members__container {
+  margin-top: 50px;
+}
+
+.addMentees {
+  margin: 10px;
 }

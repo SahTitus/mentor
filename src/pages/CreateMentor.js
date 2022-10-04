@@ -43,10 +43,10 @@ const CreateMentor = () => {
   const mentor = JSON.parse(localStorage.getItem("mentor"));
   const [formData, setFormData] = useState(initialState);
   const [image, setImage] = useState(null);
-  const [ setHasSpace] = useState(false);
+  const [setHasSpace] = useState(false);
 
   const { currentId } = useStateContex();
-  const {  isError } = useSelector((state) => state.auth);
+  const { isError } = useSelector((state) => state.auth);
 
   let inputFileRef = useRef(null);
   const selectImg = (e) => {
@@ -123,7 +123,7 @@ const CreateMentor = () => {
 
   const passError =
     formData?.password?.length < 6 && !!formData?.password?.length;
-    const doesMatch =
+  const doesMatch =
     formData?.password !== formData?.confirmPassword &&
     formData?.confirmPassword;
 
@@ -168,10 +168,8 @@ const CreateMentor = () => {
       );
       navigate("/");
     }
-   
   };
 
- 
   useEffect(() => {
     if (mentor) {
       setImage(mentor.image);
@@ -179,10 +177,8 @@ const CreateMentor = () => {
     }
   }, []);
 
-
-  const isUserError = isError?.response?.data?.type === 'msg'
-  const userError = isError?.response?.data?.message
-
+  const isUserError = isError?.response?.data?.type === "msg";
+  const userError = isError?.response?.data?.message;
 
   return (
     <div className={styles.createMentor}>
@@ -191,16 +187,15 @@ const CreateMentor = () => {
         {currentId ? <p>Edit Profile</p> : <p>Become a Mentor</p>}
       </div>
       <div className={styles.title}>
-        {currentId ? null : <p>Create Mentor's  Account</p>}
+        {currentId ? null : <p>Create Mentor's Account</p>}
       </div>
 
       <form className={styles.form}>
-
-      {(isError?.message  && !user?.result?._id) && (
-                <div className={styles.error}>
-                  <p> {isUserError ? userError : 'Something went wrong'}</p>
-                </div>
-              )}
+        {isError?.message && !user?.result?._id && (
+          <div className={styles.error}>
+            <p> {isUserError ? userError : "Something went wrong"}</p>
+          </div>
+        )}
         <input
           multiple
           onChange={handleImage}
@@ -388,7 +383,9 @@ const CreateMentor = () => {
                 value={formData.password}
                 error={passError}
                 helperText={
-                  passError ? "Password must be at least 6 characters long" : null
+                  passError
+                    ? "Password must be at least 6 characters long"
+                    : null
                 }
               />
               <IconButton

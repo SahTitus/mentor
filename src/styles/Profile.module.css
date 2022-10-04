@@ -1,111 +1,104 @@
-.profile{
-    display: flex;
-    flex-direction: column;
-
+.profile {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile__top {
-    background-color:  #4c3060;
-    display: flex;
-    flex-direction: column;
-    padding: 30px 15px;
-    color: #fff;
+  background-color: #4c3060;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 15px;
+  color: #fff;
 }
 
 .profile__header h4 {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .profile__header {
-    display: flex;
-    margin-top: -10px;
-    align-items: center;
-    margin-bottom: 10px;
-
+  display: flex;
+  margin-top: -10px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-
 .noData {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 40vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 40vh;
 }
 
 .exploreBtn {
-    background-color: #633485 !important;
-    color: #fff !important;
-    text-transform: capitalize !important;
-    margin-top: 15px !important;
+  background-color: #633485 !important;
+  color: #fff !important;
+  text-transform: capitalize !important;
+  margin-top: 15px !important;
 }
 
 .profile__arrowBack {
-color: #fff !important;
+  color: #fff !important;
 }
 
 .profile__info {
-    display: flex;
-    padding: 5px;
-    margin-top: 20px;
-   
+  display: flex;
+  padding: 5px;
+  margin-top: 20px;
 }
 
 .mentees__header {
-    padding: 20px 10px;
+  padding: 20px 10px;
 }
 
-
 .avatar {
-    height: 40px !important;
-    width: 40px !important;
-    
+  height: 40px !important;
+  width: 40px !important;
 }
 
 .profile__text {
-    flex: 1;
-    margin-left: 10px;
+  flex: 1;
+  margin-left: 10px;
 }
 
 .edit__wrapper {
-    border: 1px solid rgb(255, 255, 255) !important;
-    background-color: #633485 !important;
-
+  border: 1px solid rgb(255, 255, 255) !important;
+  background-color: #633485 !important;
 }
 
 .edit {
-    color: #fff;   
+  color: #fff;
 }
 
 .mentorDetails {
-    display: flex;
-	flex-direction: column;
-	border: 1px solid rgb(218, 215, 215);
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	padding: 20px;
-	margin: 20px;
-    min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(218, 215, 215);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  min-height: 300px;
 }
 
 .mentorDetails p {
-    font-size: 17px;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 20px;
-    margin: 15px 10px;
-    color: rgb(34, 59, 59);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-weight: 600;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 20px;
+  margin: 15px 10px;
+  color: rgb(34, 59, 59);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
 }
 
 .mentorDetails p span {
-    font-weight: 200;
-    color: #633485;
+  font-weight: 200;
+  color: #633485;
 }
 
 .caretIcon {
-    margin: 6px 0;
+  margin: 6px 0;
 }

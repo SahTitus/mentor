@@ -1,135 +1,118 @@
 .messageCard {
-    display: flex;
-    padding: 10px;
-    user-select: none !important;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    -webkit-user-select:none !important;
-    margin-bottom: 10px;
+  display: flex;
+  padding: 10px;
+  user-select: none !important;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none !important;
+  margin-bottom: 10px;
 }
 
 .userCard {
-    margin-left: auto;
-    justify-content: flex-end;
-margin-right: 15px;
+  margin-left: auto;
+  justify-content: flex-end;
+  margin-right: 15px;
 }
 
 .messageCardDark {
-    background-color: #242526;
-    color: white;
+  background-color: #242526;
+  color: white;
 }
 
 .messageCardMain {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .messageCardMainLeft {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .avatar {
-    margin-right: 10px;
-    height: 30px !important;
-    width: 30px !important;
+  margin-right: 10px;
+  height: 30px !important;
+  width: 30px !important;
 }
 
 .replyAvatar {
-    margin-right: 10px;
-    height: 25px !important;
-    width: 25px !important;
+  margin-right: 10px;
+  height: 25px !important;
+  width: 25px !important;
 }
 
-
 .messageCardRight {
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    /* background-color: rgb(240, 121, 121); */
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
 }
 
 .messageCardBox {
-    display: flex;
-    flex-direction: column;
-    border-radius: 0px 10px 10px 10px;
-    background-color: hsl(93, 35%, 94%);
-    max-width: 90%;
-    min-width: 190px;
-    padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px 10px 10px 10px;
+  background-color: hsl(93, 35%, 94%);
+  max-width: 90%;
+  min-width: 190px;
+  padding: 5px 10px;
 }
 
 .userCard .messageCardBox {
-    background-color: #0267ff;
-    color: #fff;
-    border-radius: 10px 10px 0px 10px;
+  background-color: #0267ff;
+  color: #fff;
+  border-radius: 10px 10px 0px 10px;
 }
 
 .messageCardDark .messageCardBox {
-    background-color: #383838;
+  background-color: #383838;
 }
 
 .timestamp {
-    display: flex;
-    flex-direction: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    /* margin: 5px; */
+  display: flex;
+  flex-direction: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
-.timestamp span{
-   font-size: 13px;
+.timestamp span {
+  font-size: 13px;
 }
 
 .messageCardBoxText {
-    display: flex;
- margin-top: 3px;
- line-height: 20px;
- white-space: pre-wrap !important;
- word-wrap: break-word;
- overflow-wrap: break-word !important;
- font-size: 15px;
+  display: flex;
+  margin-top: 3px;
+  line-height: 20px;
+  white-space: pre-wrap !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word !important;
+  font-size: 15px;
 }
 
-.replyingTo{
-    color: #1fbb5d;
+.replyingTo {
+  color: #1fbb5d;
 }
 
 .moreHoriz {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 5px;
-    margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 
 .messageCardBtm {
-    display: flex;
-    flex-direction: flex;
-    justify-content: space-between;
-    margin-top: 5px;
+  display: flex;
+  flex-direction: flex;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 
 .messageCardBtmLeft {
-    display: flex;
-    flex-direction: flex;
+  display: flex;
+  flex-direction: flex;
 }
-
-
-/* .messageCardBtmRight {
-
-} */
 
 .messageCardBtmLeftLike {
-    margin:0px 20px 0px 10px ;
+  margin: 0px 20px 0px 10px;
 }
-
-
-
-
-
-
-
-
-

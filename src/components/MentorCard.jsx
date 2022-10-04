@@ -82,8 +82,8 @@ const MentorCard = ({
   };
 
   const viewProfile = () => {
-    navigate(`/profile/${myMentorId}`); 
-  }
+    navigate(`/profile/${myMentorId}`);
+  };
 
   const openChatRoom = () => {
     if (!user?.result?._id) {
@@ -97,10 +97,10 @@ const MentorCard = ({
 
   return (
     <div className={styles.mentorCard}>
-      <div  onClick={viewProfile} className={styles.image__wrapper}>
+      <div onClick={viewProfile} className={styles.image__wrapper}>
         {" "}
         <img
-         onClick={viewProfile} 
+          onClick={viewProfile}
           className={styles.image}
           src={`${
             image ||
@@ -111,8 +111,13 @@ const MentorCard = ({
       </div>
 
       <div className={styles.info}>
-        <p  onClick={viewProfile}  className={styles.title}>{program}</p>
-        <div  onClick={viewProfile} className={styles.thread__wrapper}>
+        <div className={styles.btmTop}>
+          <p onClick={viewProfile} className={styles.title}>
+            {program}
+          </p>
+          {pending && <Button className={styles.reqSent}>Request sent</Button>}
+        </div>
+        <div onClick={viewProfile} className={styles.thread__wrapper}>
           {" "}
           <hr className={styles.thread} />
         </div>
@@ -143,7 +148,7 @@ const MentorCard = ({
                   onClick={cancelRqt}
                   className={`${styles.connectBtn} ${styles.cancelRequest}`}
                 >
-                  Cancel Request
+                  Cancel
                 </Button>
               ) : (
                 <>

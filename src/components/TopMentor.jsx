@@ -54,8 +54,8 @@ const TopMentor = ({
   }, [connectedMentees, dispatch, pendingMentees, user?.result?._id]);
 
   const viewProfile = () => {
-    navigate(`/profile/${myMentorId}`); 
-  }
+    navigate(`/profile/${myMentorId}`);
+  };
 
   const requestData = {
     requestId: user?.result?._id,

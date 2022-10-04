@@ -4,7 +4,6 @@ import {
   isLoading,
   getMentors,
   getMentor,
-  // getMentorSearch,
   getMentees,
   error,
   addMentor,
@@ -58,12 +57,10 @@ export const fetchMentees = (id) => async (dispatch) => {
   }
 };
 
-
 export const createMentor = (mentor) => async (dispatch) => {
   try {
     const { data } = await api.createMentor(mentor);
     dispatch(addMentor(data));
-
   } catch (error) {
     console.error(error);
   }
@@ -71,14 +68,13 @@ export const createMentor = (mentor) => async (dispatch) => {
 
 export const updateMentor = (id, mentor) => async (dispatch) => {
   try {
-    const{ data } = await api.updateMentor(id, mentor);
+    const { data } = await api.updateMentor(id, mentor);
 
     dispatch(update(data));
   } catch (error) {
     console.error(error);
   }
 };
-
 
 export const disConnect = (id, menteeId) => async (dispatch) => {
   try {

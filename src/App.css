@@ -17,11 +17,11 @@
   background-color: #fff;
 
   color: rgb(24, 23, 23);
-  padding: 10px;	
+  padding: 10px;
 }
 
 .addStudent__navbar {
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   position: fixed;
@@ -30,9 +30,9 @@ display: flex;
   background-color: #fff;
 
   color: rgb(24, 23, 23);
-  padding: 0px 10px;	
-top: 20px;
-left: 0;
+  padding: 0px 10px;
+  top: 20px;
+  left: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

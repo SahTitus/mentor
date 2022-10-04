@@ -1,11 +1,11 @@
 import styles from "../styles/ChatRoom.module.css";
-import { ArrowBack } from "@mui/icons-material";
+import { Add, ArrowBack } from "@mui/icons-material";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Avatar, Button, TextareaAutosize } from "@mui/material";
+import { Avatar, Button, IconButton, TextareaAutosize } from "@mui/material";
 import { useStateContex } from "../store/StateProvider";
-import {  SendFill } from "react-bootstrap-icons";
+import { SendFill } from "react-bootstrap-icons";
 import Message from "../components/Message";
 import { fetchMessages, sendMessage } from "../actions/messages";
 import { fetchRoom } from "../actions/chatRooms";
@@ -32,16 +32,15 @@ const ChatRoom = () => {
 
   useEffect(() => {
     dispatch(fetchMessages(roomId));
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [roomId]);
 
   const scrollRef = useRef();
 
   useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     if (!user?.result?._id) navigate("/auth");
     const interval = setInterval(() => {
       dispatch(fetchMessages(roomId));
-      scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 5000);
 
     dispatch(fetchRoom(roomId));
@@ -68,6 +67,7 @@ const ChatRoom = () => {
     e.preventDefault();
     dispatch(sendMessage(roomId, { chatData }));
     setMessage("");
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const receiverInfo = chatInfo?.users__profile?.map((pro) =>
@@ -80,6 +80,10 @@ const ChatRoom = () => {
     (rec) => rec?.mentorshipDp || rec?.image || chatInfo?.image
   );
 
+  const aboutRoom = () => {
+    navigate(`groupDetails`);
+  };
+
   return (
     <div className={`${styles.chatRoom} ${darkMode && styles.chatroomDark}`}>
       <div className={styles.chatroom__top}>
@@ -90,10 +94,16 @@ const ChatRoom = () => {
               className={styles.topAvatar}
               src={chatInfo.image}
               alt="Juaneme8"
+              style={{ cursor: "pointer" }}
+              onClick={aboutRoom}
             >
               {chatInfo?.roomName?.charAt(0)}
             </Avatar>
-            <p className={styles.roomName}>
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={aboutRoom}
+              className={styles.roomName}
+            >
               {" "}
               {chatInfo?.roomName || receiverName}
             </p>
@@ -111,6 +121,17 @@ const ChatRoom = () => {
             </Avatar>
             <p className={styles.roomName}> {receiverName}</p>
           </>
+        )}
+
+        {chatInfo?.isGroup && room?.adminId === user?.result?._id && (
+          <div className={styles.addBox}>
+            <IconButton
+              onClick={() => navigate("addMembers")}
+              className={styles.addBox__wrapper}
+            >
+              <Add />
+            </IconButton>
+          </div>
         )}
       </div>
 
@@ -137,9 +158,6 @@ const ChatRoom = () => {
         className={`${styles.chatroom__footer} ${focused && styles.focused}`}
       >
         <div className={`${styles.chatroom__form}`}>
-          {/* <div className={styles.footerBotmLeft}>
-            <Camera className={styles.footerCamera} />
-          </div> */}
           <form onSubmit={handleSubmit}>
             <TextareaAutosize
               className={styles.chatroom__textarea}
@@ -155,11 +173,11 @@ const ChatRoom = () => {
               multiline="multiline"
             />
           </form>
-       {!!message.length && (
-           <Button onClick={handleSubmit} className={styles.sendButton}>
-           <SendFill className={styles.sendIcon} />
-         </Button>
-       )}
+          {!!message.length && (
+            <Button onClick={handleSubmit} className={styles.sendButton}>
+              <SendFill className={styles.sendIcon} />
+            </Button>
+          )}
         </div>
       </div>
     </div>

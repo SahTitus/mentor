@@ -1,76 +1,77 @@
 .topMentor {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0 10px;
-    width: 100% ;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    user-select: none !important;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    -webkit-user-select:none !important;
-    -webkit-tap-highlight-color: transparent !important;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 10px;
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  user-select: none !important;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
 
- .text {
-    z-index: 100;
-    padding: 10px;
-    background-color: rgb(242, 244, 247);
-    color: rgb(0, 0, 0);
-    border-radius: 10px 10px 0 0;
-  }
+.text {
+  z-index: 100;
+  padding: 10px;
+  background-color: rgb(242, 244, 247);
+  color: rgb(0, 0, 0);
+  border-radius: 10px 10px 0 0;
+}
 
-  .name {
-    font-size: 17px;
-    margin-bottom: 5px;
-  }
+.name {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
 
-  .course {
-    font-size: 14px;
-    margin-bottom: 3px;
-    color: rgb(226, 43, 180);
-  }
+.course {
+  font-size: 14px;
+  margin-bottom: 3px;
+  color: rgb(226, 43, 180);
+}
 
-  .img__wrapper {
-display: flex;
-height: 250px;
-width: 260px;
-border-radius: 0 0 10px 10px;
-  }
+.img__wrapper {
+  display: flex;
+  height: 250px;
+  width: 260px;
+  border-radius: 0 0 10px 10px;
+}
 
-  .img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 0 0 10px 10px ;
-  }
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0 0 10px 10px;
+}
 
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-  }
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
 
-  .connectBtn {
-    text-transform: initial !important;
-    background-color: rgb(239, 239, 240) !important;
-    padding: 3px 20px !important;
-    color: rgb(37, 37, 37) !important;
-    font-size: 15px !important;	
-  }
+.connectBtn {
+  text-transform: initial !important;
+  background-color: rgb(239, 239, 240) !important;
+  padding: 3px 20px !important;
+  color: rgb(37, 37, 37) !important;
+  font-size: 15px !important;
+}
 
-  .connected, .cancelRequest {
-    background-color: rgb(168, 167, 167) !important;
-  }
+.connected,
+.cancelRequest {
+  background-color: rgb(168, 167, 167) !important;
+}
 
-  .mailBtn {
+.mailBtn {
   color: rgb(239, 239, 240) !important;
-  }
+}
 
-  .you {
-    color: #eeeeee;
-    font-size: 25px;
-    margin: 13px;
-  }
+.you {
+  color: #eeeeee;
+  font-size: 25px;
+  margin: 13px;
+}

@@ -44,7 +44,6 @@ const MenteeCard = ({ name, email, id, image }) => {
             <Message />
           </IconButton>
         </Link>
-        {/* This is handle as like and unlike, connectMentor will connect a mentee with the mentor double click will disconnect the the two */}
         <IconButton onClick={remove}>
           <Clear />
         </IconButton>

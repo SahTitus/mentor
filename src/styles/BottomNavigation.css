@@ -49,18 +49,12 @@
 }
 
 .btmNav__option.active {
-  /* color: #3145f7 !important; */
   color: #a5219e !important;
 }
 
 .btmNav__optionDark.btmNav__option.active {
   color: #a5219e !important;
 }
-
-
-/* .btmNav__optionDark > .navBtm__icon {
-
-} */
 
 .btmNav__option p {
   opacity: 1;

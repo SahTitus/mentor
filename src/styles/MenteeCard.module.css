@@ -1,21 +1,20 @@
 .card {
-    display: flex;
-    border-bottom: 1px solid rgb(221, 220, 220);
-    padding: 0 10px;
-    padding-bottom: 10px;
-    align-items: center;
-    margin-bottom: 16px;
-    
+  display: flex;
+  border-bottom: 1px solid rgb(221, 220, 220);
+  padding: 0 10px;
+  padding-bottom: 10px;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .avatar {
-    height: 30px;
-    width: 30px;
+  height: 30px;
+  width: 30px;
 }
 
 .info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 10px;
 }

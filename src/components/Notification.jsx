@@ -30,7 +30,7 @@ const Notification = ({ name, id, image, mentorId, requestId, connected }) => {
           <p>{name}</p>
           <span>Sent you a mentor request</span>
         </div>
- 
+
         <div className={styles.left}>
           <IconButton onClick={() => dispatch(deleteRequest(id))}>
             <Clear />
@@ -45,7 +45,7 @@ const Notification = ({ name, id, image, mentorId, requestId, connected }) => {
             connected && styles.disableBtn
           }`}
         >
-         {connected ?  "Confirmed" :  "Confirm"}
+          {connected ? "Confirmed" : "Confirm"}
         </Button>
       </div>
     </div>

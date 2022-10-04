@@ -16,7 +16,7 @@ const AddRoom = () => {
   const [groupName, setGroupName] = useState("");
   const [image, setImage] = useState(null);
 
-  const {setChatInfo, chatInfo } = useStateContex();
+  const { setChatInfo, chatInfo } = useStateContex();
 
   let inputFileRef = useRef(null);
   const selectImg = (e) => {
@@ -62,7 +62,7 @@ const AddRoom = () => {
     if (room?._id) {
       dispatch(
         updateRoom(room?._id, {
-          roomName:groupName,
+          roomName: groupName,
           image: image,
         })
       );
@@ -77,7 +77,7 @@ const AddRoom = () => {
       );
     }
     navigate("/chats");
-    setChatInfo('')
+    setChatInfo("");
   };
 
   const room = chatInfo;
@@ -85,7 +85,7 @@ const AddRoom = () => {
   useEffect(() => {
     if (room) {
       setGroupName(room.roomName);
-      setImage( room.image);
+      setImage(room.image);
     }
   }, []);
 
@@ -126,7 +126,6 @@ const AddRoom = () => {
             </>
           )}
         </div>
-        {/* {user && ( */}
         <Box
           id={styles.auth_inputBox}
           sx={{ display: "flex", alignItems: "center" }}

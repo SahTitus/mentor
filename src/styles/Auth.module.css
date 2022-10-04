@@ -1,193 +1,186 @@
 .auth {
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
 }
 
 .form__container {
-    display: flex;
-    flex-direction: column;
-    margin: 30px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 10px 10px 10px;
 }
 
 .selectedImage {
-	height: 200px;
-	margin-top: -10px;
-	max-width: 100%;
-	margin: 10px 0;
-	}
-	
-	.cancelImage {
-	  position: absolute;
-	  left: 80px;
-	  color: red !important;
-	}
-	
-	.arrowBack {
-	  margin: 0 10px;
-	  cursor: pointer;
-	}
+  height: 200px;
+  margin-top: -10px;
+  max-width: 100%;
+  margin: 10px 0;
+}
 
-	.createMentor__top {
-		display: flex;
-		align-items: center;
-		padding: 20px 0;
-		background-color: #a5219e;
-		color: #fff !important;
-		font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-		font-size: 18px;
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 100;
-	  }
-	
-	.select__image {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	 
-	}
-	
-	.imageIcon__wrapper {
-	 border: 1px solid rgb(218, 215, 215) !important;
-	  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
-	  border-radius: 10px !important;
-	  padding: 13px !important;
-	  margin: 10px 0 !important;
-	}
+.cancelImage {
+  position: absolute;
+  left: 80px;
+  color: red !important;
+}
+
+.arrowBack {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.createMentor__top {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #a5219e;
+  color: #fff !important;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 18px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.select__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageIcon__wrapper {
+  border: 1px solid rgb(218, 215, 215) !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 10px !important;
+  padding: 13px !important;
+  margin: 10px 0 !important;
+}
 
 .heading {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;	
-	border: 1px solid rgb(218, 215, 215);
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-	padding: 20px;
-	margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgb(218, 215, 215);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .auth_input {
-    width: 100% !important;
-    display: flex;
-    flex: 1;
-	
+  width: 100% !important;
+  display: flex;
+  flex: 1;
 }
-/* 
-.loadingState {
-	background-color:#a5219e !important;
-} */
 
-#auth_inputBox{
-    display: flex;
-    flex: 1;
-    width: 100% !important;
-    margin: 10px 0;
+#auth_inputBox {
+  display: flex;
+  flex: 1;
+  width: 100% !important;
+  margin: 10px 0;
 }
 
 .showPassword {
-    position: absolute !important;
-    right: 5px;
-	top: 10px;
-	z-index: 1000000000000000 !important;
+  position: absolute !important;
+  right: 5px;
+  top: 10px;
+  z-index: 1000000000000000 !important;
 }
 
-.showPasswordIcon{
-	right: 5px;
-	top: 10px;
-	z-index: 1000000000000000 !important;
+.showPasswordIcon {
+  right: 5px;
+  top: 10px;
+  z-index: 1000000000000000 !important;
 }
 
 .terms span {
-	color: #a5219e;
+  color: #a5219e;
 }
 
 .divider {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .divider hr {
-	height: 1px;
-	background-color: rgb(201, 198, 198);
-	border: none;
-	width: 100%;
+  height: 1px;
+  background-color: rgb(201, 198, 198);
+  border: none;
+  width: 100%;
 }
 
 .divider p {
-	margin: 0 10px;
-	font-size: 17px;
-	color: rgb(131, 130, 130);
+  margin: 0 10px;
+  font-size: 17px;
+  color: rgb(131, 130, 130);
 }
 
 .signIn__button {
-	margin: 20px 0 !important;
-	background-color: #a5219e !important;
-	color: white !important;
-	border-radius: 20px !important;
+  margin: 20px 0 !important;
+  background-color: #a5219e !important;
+  color: white !important;
+  border-radius: 20px !important;
 }
 
 .disableBtn {
-	background-color: #643262 !important;
+  background-color: #643262 !important;
 }
 
 .errEye {
-	bottom: 10px;
+  bottom: 10px;
 }
 
 .error {
-	color: red;
-	margin: 10px 0;
+  color: red;
+  margin: 10px 0;
 }
 
 .signInWithGoogle__button {
-	background-color: white !important;
-	border: 1px solid rgba(0, 0, 0, 0.1) !important;
-	margin: 20px 0 !important;
-	border-radius: 40px !important;
-	color: #a5219e !important;
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  margin: 20px 0 !important;
+  border-radius: 40px !important;
+  color: #a5219e !important;
 }
 
 .googleLogo {
-	height: 25px;
-	border-radius: 50%;
-	object-fit: cover;
-	margin-right: 10px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 .login__newUser {
-	font-size: 17px;
+  font-size: 17px;
 }
 
 .login__newUser span {
-	font-weight: 500;
-	margin-left: 5px;
-	color: #a5219e;
-	cursor: pointer;
+  font-weight: 500;
+  margin-left: 5px;
+  color: #a5219e;
+  cursor: pointer;
 }
 
-
 @media screen and (min-width: 759px) {
-  .form__container{
-	max-width: 900px;
+  .form__container {
+    max-width: 900px;
   }
 
   .showPassword {
     position: relative !important;
     right: 0px;
-}
+  }
 
   .auth {
-	justify-content: center;
-	align-items: center;
+    justify-content: center;
+    align-items: center;
   }
-  }
+}

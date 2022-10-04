@@ -68,7 +68,11 @@ const Profile = () => {
         </div>
         <div className={styles.profile__info}>
           {profileId ? (
-            <Avatar className={styles.avatar} src={mentor?.image} alt="Juaneme8">
+            <Avatar
+              className={styles.avatar}
+              src={mentor?.image}
+              alt="Juaneme8"
+            >
               {mentor?.name?.charAt(0)}
             </Avatar>
           ) : (
@@ -108,7 +112,6 @@ const Profile = () => {
 
       {profileId ? (
         <div className={styles.mentorDetails}>
-          {/* <div className={styles.details__container}> */}
           <p>
             Field of Expertise <CaretDownFill className={styles.caretIcon} />{" "}
             <span>{mentor.fieldExp}</span>
@@ -129,8 +132,6 @@ const Profile = () => {
             Date of Birth
             <CaretDownFill className={styles.caretIcon} /> <span>{dateB}</span>
           </p>
-
-          {/* </div> */}
         </div>
       ) : (
         <div className={styles.mentees__container}>

@@ -1,106 +1,117 @@
 .mentorCard {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color: #fff;
-    margin: 10px 0;
-    user-select: none !important;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    -webkit-user-select:none !important;
-    -webkit-tap-highlight-color: transparent !important;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fff;
+  margin: 10px 0;
+  user-select: none !important;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-.image__wrapper{
-    height: 300px;
-    min-height: 250px;
+.image__wrapper {
+  height: 300px;
+  min-height: 250px;
   width: 100%;
   border-radius: 10px 10px 0 0;
   position: relative;
 }
 
 .image {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-    object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
 }
 
 .info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 0 15px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 15px;
 }
 
-
 .title {
-    margin-top: 10px;
-    font-size: 17px;
+  margin-top: 10px;
+  font-size: 17px;
 }
 
 .thread__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .thread {
-    display: flex;
-    margin: 15px 0;
-    border: none;
-    height: 5px;
-    width: 100%;
+  display: flex;
+  margin: 15px 0;
+  border: none;
+  height: 5px;
+  width: 100%;
 
-    border-radius: 10px;
-    background-color:  #a5219e;
+  border-radius: 10px;
+  background-color: #a5219e;
 }
 
 .card__bottom {
-    display: flex;
-    justify-content: space-between;
-margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.card__left, .card__right {
-    display: flex;
-    align-items: center;
+.card__left,
+.card__right {
+  display: flex;
+  align-items: center;
 }
 
 .avatar {
-    height: 27px !important;
-    width: 27px !important;
-    margin-right: 7px;
+  height: 27px !important;
+  width: 27px !important;
+  margin-right: 7px;
 }
 
 .connectBtn {
-    /* #a5219e */
-    background-color: #a5219e !important;
-    color: white !important;
-    margin-left: 15px !important;
-    height: 30px !important;
-    text-transform: initial !important;
+  background-color: #a5219e !important;
+  color: white !important;
+  margin-left: 15px !important;
+  height: 30px !important;
+  text-transform: initial !important;
 }
 
-.cancelRequest{
-    background-color: #d461cf !important;   
+.reqSent {
+  margin-top: 10px !important;
+  cursor: text !important;
+
+  background-color: rgb(225, 228, 230) !important;
+  color: #000 !important;
+}
+
+.btmTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cancelRequest {
+  background-color: #d461cf !important;
 }
 
 .connected {
-    background-color: #f88af3 !important;
+  background-color: #f88af3 !important;
 }
 
-.card__rightPerson{
-    color: #a5219e;
-    font-size: 25px;
+.card__rightPerson {
+  color: #a5219e;
+  font-size: 25px;
 }
 
 @media screen and (min-width: 759px) {
-    .mentorCard {
-  max-width: 1000px;
-  min-width: 800px;
-    }
-  
+  .mentorCard {
+    max-width: 1000px;
+    min-width: 800px;
   }
+}

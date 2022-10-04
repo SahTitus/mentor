@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const API = axios.create({ baseURL: "https://mentor-engine.vercel.app"});
-// https://mentor-engine.vercel.app
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -32,6 +31,7 @@ export const fetchRoom = (id) => API.get(`/rooms/${id}/getRoom`);
 export const createRoom = (room) => API.post(`/rooms/createRoom`, room);
 export const updateRoom = (id, updatedRoom) => API.patch(`/rooms/${id}/update`, updatedRoom);
 export const deleteRoom = (id) => API.delete(`/rooms/${id}/delete`);
+export const memberAction = (ids) => API.patch(`/rooms/memberAction`, ids);
 
 export const fetchNotifications = (id) => API.get(`notifications/${id}`);
 export const sendRequest = (request) => API.post(`notifications/sendRequest`, request);

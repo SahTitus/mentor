@@ -48,18 +48,20 @@ export const mentorsSlice = createSlice({
       localStorage.setItem("mentor", JSON.stringify({ ...action.payload }));
     },
     deleteMentor: (state, action) => {
-	state.mentors = state.mentors.filter(
+      state.mentors = state.mentors.filter(
         (mentor) => mentor._id !== action.payload
       );
     },
     removeMentee: (state, action) => {
-      state.mentors = state.mentors.map((mentor) => mentor.mentees.filter((id) => id !== action.payload));
+      state.mentors = state.mentors.map((mentor) =>
+        mentor.mentees.filter((id) => id !== action.payload)
+      );
     },
     update: (state, action) => {
       state.mentors = state.mentors.map((mentor) =>
         mentor._id === action.payload._id ? action.payload : mentor
       );
-	  localStorage.setItem("mentor", JSON.stringify({ ...action.payload }));
+      localStorage.setItem("mentor", JSON.stringify({ ...action.payload }));
     },
     connect: (state, action) => {
       state.mentors = state.mentors.map((mentor) =>

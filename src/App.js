@@ -12,10 +12,10 @@ import MyMentors from "./pages/MyMentors";
 import Notifications from "./pages/Notifications";
 import SeeMore from "./pages/SeeMore";
 import SearchPage from "./pages/SearchPage";
-
+import GroupDetails from "./pages/GroupDetails";
+import AddMembers from "./pages/AddMembers";
 
 function App() {
-
   return (
     <div className="app">
       <BrowserRouter>
@@ -23,12 +23,18 @@ function App() {
           <Routes className="app__body">
             <Route path="/" element={<Home />} />
             <Route path="/chats" element={<Chats />} />
+
             <Route path="/auth" element={<Auth />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/addMentor" element={<CreateMentor />} />
+            <Route
+              path="/chatRoom/:id/groupDetails"
+              element={<GroupDetails />}
+            />
+            <Route path="/chatRoom/:id/addMembers" element={<AddMembers />} />
             <Route path="/chatRoom/:id" element={<ChatRoom />} />
+            <Route path={"profile/:id"} element={<Profile />} />
             <Route path="/addRoom" element={<AddRoom />} />
-            <Route path={'profile/:id' } element={<Profile />} />
             <Route path="/mymentors" element={<MyMentors />} />
             <Route path="/seemore" element={<SeeMore />} />
             <Route path="/notifications" element={<Notifications />} />

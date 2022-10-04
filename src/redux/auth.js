@@ -32,11 +32,10 @@ export const authSlice = createSlice({
       state.isLoading = false;
     },
     update: (state, action) => {
-		  localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
+      localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
       state.user = action.payload;
       state.isLoading = false;
-
-		},
+    },
     logout: (state) => {
       localStorage.removeItem("profile");
       state.user = null;
@@ -44,6 +43,13 @@ export const authSlice = createSlice({
   },
 });
 
-export const { authData, logout, update, isLoading, isError, getUsers, getUser, } =
-  authSlice.actions;
+export const {
+  authData,
+  logout,
+  update,
+  isLoading,
+  isError,
+  getUsers,
+  getUser,
+} = authSlice.actions;
 export default authSlice.reducer;

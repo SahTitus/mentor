@@ -4,9 +4,9 @@
   width: 100%;
   padding-bottom: 70px;
   user-select: none !important;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  -webkit-user-select:none !important;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none !important;
 }
 
 .herobanner {
@@ -27,7 +27,7 @@
   overflow-x: auto;
   overflow-y: hidden;
   align-items: center;
-margin: 10px 0;
+  margin: 10px 0;
   width: 100%;
   background-color: rgb(133, 78, 78);
   padding: 20px 0;
@@ -50,8 +50,7 @@ margin: 10px 0;
 
 @media screen and (min-width: 759px) {
   .mentors {
-align-items: center;
-width: 100%;	
+    align-items: center;
+    width: 100%;
   }
-
 }

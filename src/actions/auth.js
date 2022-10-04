@@ -62,7 +62,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
 
     navigate("/");
   } catch (error) {
-   dispatch(isError(error));
+    dispatch(isError(error));
   }
 };
 

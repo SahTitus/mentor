@@ -1,4 +1,4 @@
-.searchPage{
+.searchPage {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -48,19 +48,19 @@
   z-index: 100;
 }
 
-.backIcon{
-    color: #fff;
-    margin-left: 10px;
+.backIcon {
+  color: #fff;
+  margin-left: 10px;
 }
 
 .searchBtn {
-    background-color: rgb(233, 230, 236);
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-    border-radius: 0 5px 5px 0px;
+  background-color: rgb(233, 230, 236);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 0 5px 5px 0px;
 }
 
 .banner__searchContainer {

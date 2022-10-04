@@ -3,6 +3,7 @@
   flex-direction: column;
   margin-top: 55px;
   width: 100%;
+  padding-bottom: 70px;
 }
 
 .topAvatar {
@@ -13,6 +14,10 @@
 
 .roomName {
   margin-left: 7px;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .chatroom__top {
@@ -25,6 +30,16 @@
   background-color: #fff;
   height: 50px;
   box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.1);
+}
+
+.addBox {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+}
+
+.addBox__wrapper {
+  margin-right: 10px !important;
 }
 
 .arrowBack {
@@ -53,7 +68,6 @@
   display: flex;
   align-items: center;
   -webkit-box-align: center;
-  /* flex: 1; */
 }
 
 .chatroom__form form {

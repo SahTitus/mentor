@@ -60,7 +60,7 @@ const MyMentors = () => {
                 />
               ))
             )}
-                  {!myMentors?.length > 0 && !isLoading && (
+            {!myMentors?.length > 0 && !isLoading && (
               <div className={styles.noData}>
                 <p>No Mentor found</p>
 
@@ -87,7 +87,7 @@ const MyMentors = () => {
                 />
               ))
             )}
-         {!mentees?.length > 0 && !isLoading && (
+            {!mentees?.length > 0 && !isLoading && (
               <div className={styles.noData}>
                 <p>No Mentee found</p>
 

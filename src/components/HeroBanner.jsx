@@ -9,31 +9,33 @@ import { useDispatch } from "react-redux";
 import { fetchMentorsBySearch } from "../actions/mentors";
 
 const Herobanner = ({ scroll }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setGetSearchTerm } = useStateContex();
-  
-const disableBtn = !searchTerm?.length > 0 ||
-!searchTerm?.trim() 
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-if (!disableBtn) navigate(`/search?searchQuery=${searchTerm}`);
-setGetSearchTerm(searchTerm)
-dispatch(fetchMentorsBySearch(searchTerm));
-}
+  const disableBtn = !searchTerm?.length > 0 || !searchTerm?.trim();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!disableBtn) navigate(`/search?searchQuery=${searchTerm}`);
+    setGetSearchTerm(searchTerm);
+    dispatch(fetchMentorsBySearch(searchTerm));
+  };
 
   return (
     <div className={styles.herobanner}>
       <form onSubmit={handleSubmit} className={styles.banner__search}>
         <div className={styles.banner__searchContainer}>
-          <Button disabled={disableBtn} type='button' onClick={handleSubmit}>
-         
+          <Button disabled={disableBtn} type="button" onClick={handleSubmit}>
             <Search className={styles.searchIcon} />
           </Button>
-          <input  value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}  type="text" placeholder="Search for mentors..." />
+          <input
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            type="text"
+            placeholder="Search for mentors..."
+          />
         </div>
       </form>
 
@@ -46,9 +48,7 @@ dispatch(fetchMentorsBySearch(searchTerm));
             Learn More {`>>`}
           </Button>
         </div>
-        {/* <div className={styles.hero__right}> */}
         <img src={av} alt="avatar" className={styles.avatarSvg} />
-        {/* </div> */}
       </div>
     </div>
   );

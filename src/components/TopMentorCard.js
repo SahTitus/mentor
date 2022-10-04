@@ -66,8 +66,8 @@ const TopMentorCard = ({
     setPending(!pending);
   };
   const viewProfile = () => {
-    navigate(`/profile/${myMentorId}`); 
-  }
+    navigate(`/profile/${myMentorId}`);
+  };
 
   const cancelRqt = () => {
     setPending(!pending);
@@ -96,7 +96,7 @@ const TopMentorCard = ({
 
   return (
     <div className={styles.notif__card}>
-      <div  onClick={viewProfile} className={styles.card__top}>
+      <div onClick={viewProfile} className={styles.card__top}>
         <Avatar src={image} className={styles.avatar}>
           {name?.charAt(0)}
         </Avatar>

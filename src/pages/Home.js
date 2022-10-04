@@ -21,8 +21,7 @@ const Home = () => {
     .slice()
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
- 
-    const topMentors = mentors
+  const topMentors = mentors
     ?.slice()
     .sort(
       (a, b) => parseFloat(b?.mentees.length) - parseFloat(a?.mentees.length)
@@ -53,25 +52,19 @@ const Home = () => {
 
       <div ref={scrollRef} />
       <div className={styles.topMentor__flex}>
-      
-   {
-    topMentors?.slice(0, 5).map(mentor => (
-      <TopMentor
-      key={mentor._id	}
-      name={mentor.name}
-      course={mentor.fieldExp}
-      image={mentor.image}
-      myMentorId={mentor?._id}
-      id={mentor?.userId}
-      pendingMentees={mentor?.pendingMentees}
-      connectedMentees={mentor?.mentees}
-    />
-    ))
-   }
-        
+        {topMentors?.slice(0, 5).map((mentor) => (
+          <TopMentor
+            key={mentor._id}
+            name={mentor.name}
+            course={mentor.fieldExp}
+            image={mentor.image}
+            myMentorId={mentor?._id}
+            id={mentor?.userId}
+            pendingMentees={mentor?.pendingMentees}
+            connectedMentees={mentor?.mentees}
+          />
+        ))}
       </div>
-      {/* </div> */}
-
       <div className={styles.mentors}>
         {feeds.map((mentor) => (
           <MentorCard

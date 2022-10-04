@@ -9,7 +9,6 @@ import { People, Logout } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/auth";
-import { logoutMentor } from "../redux/mentors";
 import { useStateContex } from "../store/StateProvider";
 
 const listItems = [
@@ -90,7 +89,7 @@ const Navbar = () => {
           </ListItem>
         </Link>
         {mentor?._id && (
-          <Link to="/addRoom">
+          <Link onClick={() => setCurrentId(null)} to="/addRoom">
             <ListItem button className={`${styles.drawer__listItem} `}>
               <div className={styles.drawer__listIcon}>
                 <Add />
@@ -134,7 +133,6 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      {/* <Sidebar toggleSlider={toggleSlider} open={open} setOpen={setOpen} /> */}
       <IconButton onClick={toggleSlider} className={styles.menu}>
         <Menu />
       </IconButton>

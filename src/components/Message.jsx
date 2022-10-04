@@ -13,15 +13,11 @@ const Message = ({ senderName, isGroup, message, timestamp, id, senderId }) => {
 
   const isUser = senderId === user?.result?._id || mentorLocal?.id === senderId;
 
- const time =new Date(timestamp).toLocaleTimeString()
-
+  const time = new Date(timestamp).toLocaleTimeString();
 
   return (
     <div className={`${styles.messageCard} ${isUser && styles.userCard} `}>
-      <div className={styles.messageCardMainLeft}>
-        {" "}
-        {/* <Avatar src={userDp} className={styles.avatar} /> */}
-      </div>
+      <div className={styles.messageCardMainLeft}> </div>
       <div className={styles.messageCardMain}>
         <div className={styles.messageCardRight}>
           <div className={styles.messageCardBox}>
@@ -33,26 +29,24 @@ const Message = ({ senderName, isGroup, message, timestamp, id, senderId }) => {
             </div>
           </div>
         </div>
-        {
-         isUser && (
-            <div className={styles.moreHoriz}>
-          {showDeleteIcon ? (
-            <IconButton
-              onClick={() => {
-                dispatch(deleteMessage(id));
-                setShowDeleteIcon(false);
-              }}
-            >
-              <Delete />
-            </IconButton>
-          ) : (
-            <IconButton onClick={() => setShowDeleteIcon(true)}>
-              <MoreHoriz />
-            </IconButton>
-          )}
-        </div>
-          )
-        }
+        {isUser && (
+          <div className={styles.moreHoriz}>
+            {showDeleteIcon ? (
+              <IconButton
+                onClick={() => {
+                  dispatch(deleteMessage(id));
+                  setShowDeleteIcon(false);
+                }}
+              >
+                <Delete />
+              </IconButton>
+            ) : (
+              <IconButton onClick={() => setShowDeleteIcon(true)}>
+                <MoreHoriz />
+              </IconButton>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
