@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchMentors } from "../actions/mentors";
 import {
   Footer,
@@ -17,6 +17,9 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const { mentors } = useSelector((state) => state.mentors);
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("profile"));
   const feeds = mentors
     .slice()
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
@@ -30,6 +33,10 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchMentors());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!user?.result?._id) navigate("/auth");
+  }, []);
 
   const scrollRef = useRef();
 

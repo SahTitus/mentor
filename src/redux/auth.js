@@ -38,6 +38,7 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       localStorage.removeItem("profile");
+      localStorage.removeItem("mentor");
       state.user = null;
     },
   },
