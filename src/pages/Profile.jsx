@@ -40,7 +40,7 @@ const Profile = () => {
   );
 
   const d = new Date();
-  let dateB = d.toDateString(mentor.dbirth);
+  let dateB = d.toDateString(mentor?.dbirth);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -81,7 +81,7 @@ const Profile = () => {
               src={mentorLocal?.image || user1?.result?.image}
               alt="Juaneme8"
             >
-              {mentorLocal?.name.charAt(0) || user1?.result?.name.charAt(0)}{" "}
+              {mentorLocal?.name?.charAt(0) || user1?.result?.name.charAt(0)}{" "}
             </Avatar>
           )}
           {profileId ? (
@@ -114,19 +114,19 @@ const Profile = () => {
         <div className={styles.mentorDetails}>
           <p>
             Field of Expertise <CaretDownFill className={styles.caretIcon} />{" "}
-            <span>{mentor.fieldExp}</span>
+            <span>{mentor?.fieldExp}</span>
           </p>
           <p>
             Educational Level <CaretDownFill className={styles.caretIcon} />{" "}
-            <span>{mentor.education}</span>
+            <span>{mentor?.education}</span>
           </p>
           <p>
             School <CaretDownFill className={styles.caretIcon} />{" "}
-            <span>{mentor.school}</span>
+            <span>{mentor?.school}</span>
           </p>
           <p>
             Religion <CaretDownFill className={styles.caretIcon} />{" "}
-            <span>{mentor.religion}</span>
+            <span>{mentor?.religion}</span>
           </p>
           <p>
             Date of Birth

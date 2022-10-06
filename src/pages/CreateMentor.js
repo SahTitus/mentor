@@ -156,7 +156,7 @@ const CreateMentor = () => {
           image: image,
         })
       );
-      navigate("/profile");
+      navigate("/profile/1001");
     } else {
       dispatch(
         createMentor({
