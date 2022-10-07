@@ -61,7 +61,7 @@ const Profile = () => {
     <div className={styles.profile}>
       <div className={styles.profile__top}>
         <div className={styles.profile__header}>
-          <IconButton onClick={() => navigate(-1)}>
+          <IconButton onClick={() => navigate('/')}>
             <ArrowBack className={styles.profile__arrowBack} />
           </IconButton>
           <h4>Profile</h4>

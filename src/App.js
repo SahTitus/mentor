@@ -8,6 +8,7 @@ import AddRoom from "./pages/AddRoom";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import CreateMentor from "./pages/CreateMentor";
+import CreateMentee from "./pages/CreateMentee";
 import MyMentors from "./pages/MyMentors";
 import Notifications from "./pages/Notifications";
 import SeeMore from "./pages/SeeMore";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/addMentor" element={<CreateMentor />} />
+            <Route path="/createMentee" element={<CreateMentee />} />
             <Route
               path="/chatRoom/:id/groupDetails"
               element={<GroupDetails />}
