@@ -71,7 +71,7 @@ export const updateUser = (id, userData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.updateUser(id, userData);
 
-    navigate("/profile");
+    navigate("/profile/1001");
     dispatch(update(data));
   } catch (error) {
     dispatch(isError(error?.response?.data));

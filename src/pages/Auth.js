@@ -13,7 +13,11 @@ import {
   Button,
   CircularProgress,
   Dialog,
+  FormControl,
   IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
@@ -21,7 +25,6 @@ import styles from "../styles/Auth.module.css";
 import Go from "../images/Go.png";
 import { signInWithPopup, GoogleAuthProvider } from "@firebase/auth";
 import { auth } from "../firebase";
-import { authData } from "../redux/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { logWithGoogle, signin, signup, updateUser } from "../actions/auth";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +35,11 @@ const initialState = {
   firstName: "",
   lastName: "",
   email: "",
+  department: "",
+  age: "",
+  religion: "",
+  program: "",
+  rationale: "",
   password: "",
   confirmPassword: "",
 };
@@ -51,6 +59,18 @@ const Auth = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [openRa, setOpenRa] = useState(false);
+
+  const handleClose = () => {
+    setOpenRa(false);
+  };
+
+  const handleOpen = () => {
+
+      setOpenRa(true);
+
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -300,11 +320,12 @@ const Auth = () => {
               )}
 
               {currentId && (
+                <>
                 <Box
                   id={styles.auth_inputBox}
                   sx={{ display: "flex", alignItems: "center" }}
                 >
-                  <Person sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                 
                   <TextField
                     onChange={handleChange}
                     id={styles.auth_input}
@@ -315,14 +336,102 @@ const Auth = () => {
                     name="name"
                   />
                 </Box>
+
+                <Box
+                  id={styles.auth_inputBox}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  
+                  <TextField
+                    onChange={handleChange}
+                    id={styles.auth_input}
+                    label='Department'
+                    variant="outlined"
+                    value={formData.department}
+                    className={styles.auth_input}
+                    name="department"
+                  />
+                </Box>
+                <Box
+                  id={styles.auth_inputBox}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  
+                  <TextField
+                    onChange={handleChange}
+                    id={styles.auth_input}
+                 
+                    label="Program"
+                    variant="outlined"
+                    value={formData.program}
+                    className={styles.auth_input}
+                    name="program"
+                  />
+                </Box>
+                <Box
+                  id={styles.auth_inputBox}
+                  sx={{ display: "flex", alignItems: "center" }}
+                >
+                  
+                  <TextField
+                    onChange={handleChange}
+                    id={styles.auth_input}
+
+                    label="Age"
+                    variant="outlined"
+                    value={formData.age}
+                    className={styles.auth_input}
+                    name="age"
+                  />
+                </Box>
+               
+                <Box
+          id={styles.auth_inputBox}
+          sx={{ display: "flex", alignItems: "center" }}
+          className={styles.edu_inputBox}
+        >
+          <div className={styles.edu_inputDiv}>
+            <FormControl sx={{ m: 1 }} className={styles.edu_inputWrapper}>
+              <InputLabel id="demo-controlled-open-select-labeloo">
+                Rationale for Mentorship
+              </InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-labeluu"
+                id="demo-controlled-open-select22"
+                open={openRa}
+                onClose={handleClose}
+                onOpen={ handleOpen}
+                name="rationale"
+                variant="outlined"
+                label="Rationale for Mentorship "
+                fullWidth
+                value={formData.rationale}
+                onChange={handleChange}
+              >
+                <MenuItem value=" Time management ">Time management</MenuItem>
+                <MenuItem value="Career guidance">Career guidance</MenuItem>
+                <MenuItem value="Relationship">Relationship</MenuItem>
+                <MenuItem value="Religious change ">Religious change </MenuItem>
+                <MenuItem value="Academics">Academics</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+        </Box>
+                </>
               )}
+
+
+
+
               <Box
                 id={styles.auth_inputBox}
                 sx={{ display: "flex", alignItems: "center" }}
               >
-                <AlternateEmail
-                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                />
+               {!currentId && (
+                 <AlternateEmail
+                 sx={{ color: "action.active", mr: 1, my: 0.5 }}
+               />
+               )}
                 <TextField
                   onChange={handleChange}
                   id={styles.auth_input}

@@ -87,6 +87,25 @@
   margin: 10px 0;
 }
 
+.edu_inputBox {
+  display: flex;
+  min-width: 100px !important;
+  flex: 1 !important;
+}
+
+.edu_inputDiv {
+  display: flex;
+  min-width: 100px !important;
+  flex: 1 !important;
+}
+
+.edu_inputWrapper {
+  display: flex;
+  min-width: 100px !important;
+  flex: 1 !important;
+}
+
+
 .showPassword {
   position: absolute !important;
   right: 5px;

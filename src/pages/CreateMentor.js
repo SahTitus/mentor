@@ -62,19 +62,27 @@ const CreateMentor = () => {
 
   const [openRel, setOpenRel] = useState(false);
   const [openEdu, setOpenEdu] = useState(false);
+  const [openExp, setOpenExp] = useState(false);
 
   const handleClose = () => {
     setOpenEdu(false);
+    setOpenExp(false);
     setOpenRel(false);
   };
 
-  const handleOpen = (a, b) => {
-    if (b) {
+  const handleOpen = (a, b, c) => {
+    if (b === 'b') {
       setOpenEdu(true);
       setOpenRel(false);
-    } else {
+      setOpenExp(false);
+    } else if (a ==='a') {
       setOpenEdu(false);
       setOpenRel(true);
+      setOpenExp(false);
+    } else {
+      setOpenEdu(false);
+      setOpenExp(true);
+      setOpenRel(false);
     }
   };
 
@@ -283,10 +291,9 @@ const CreateMentor = () => {
                   onChange={handleChange}
                   value={formData.religion}
                 >
-                  <MenuItem value="Christian">Christian</MenuItem>
-                  <MenuItem value="Muslim">Muslims</MenuItem>
-                  <MenuItem value="Traditional">Traditional</MenuItem>
-                  <MenuItem value="Non-religious">Non-traditionalist</MenuItem>
+                  <MenuItem value="Christianity">Christianity</MenuItem>
+                  <MenuItem value="Islamic">Islamic</MenuItem>
+                  <MenuItem value="Others">Others</MenuItem>
                 </Select>
               </FormControl>
             </div>
@@ -310,16 +317,36 @@ const CreateMentor = () => {
         <Box
           id={styles.auth_inputBox}
           sx={{ display: "flex", alignItems: "center" }}
+          className={styles.edu_inputBox}
         >
-          <TextField
-            name="fieldExp"
-            variant="outlined"
-            label="Field(s) of Expertise "
-            fullWidth
-            value={formData.fieldExp}
-            onChange={handleChange}
-          />
+          <div className={styles.edu_inputDiv}>
+            <FormControl sx={{ m: 1 }} className={styles.edu_inputWrapper}>
+              <InputLabel id="demo-controlled-open-select-labeloo">
+                Field of Expertise
+              </InputLabel>
+              <Select
+                labelId="demo-controlled-open-select-labeluu"
+                id="demo-controlled-open-select22"
+                open={openExp}
+                onClose={handleClose}
+                onOpen={() => handleOpen(" ", " ", "c")}
+                name="fieldExp"
+                variant="outlined"
+                label="Field(s) of Expertise "
+                fullWidth
+                value={formData.fieldExp}
+                onChange={handleChange}
+              >
+                <MenuItem value=" Time management ">Time management</MenuItem>
+                <MenuItem value="Career guidance">Career guidance</MenuItem>
+                <MenuItem value="Relationship">Relationship</MenuItem>
+                <MenuItem value="Religious change ">Religious change </MenuItem>
+                <MenuItem value="Academics">Academics</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
         </Box>
+
         <Box
           id={styles.auth_inputBox}
           sx={{ display: "flex", alignItems: "center" }}
@@ -350,7 +377,7 @@ const CreateMentor = () => {
                 id="demo-controlled-open-select"
                 open={openEdu}
                 onClose={handleClose}
-                onOpen={() => handleOpen(" ", "b")}
+                onOpen={() => handleOpen(" ", "b", " ")}
                 name="education"
                 value={formData.education}
                 label="Educational Level"
