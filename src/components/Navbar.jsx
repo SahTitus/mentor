@@ -112,7 +112,7 @@ const Navbar = () => {
           </ListItem>
         )}
 
-{!mentor && !user?.result?.age && !user?.result?._id && (
+{!mentor && !user?.result?.age && user?.result?._id && (
           <>
             <Link to="/createMentee">
               <ListItem
