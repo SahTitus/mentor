@@ -340,7 +340,7 @@ const CreateMentor = () => {
                 <MenuItem value=" Time management ">Time management</MenuItem>
                 <MenuItem value="Career guidance">Career guidance</MenuItem>
                 <MenuItem value="Relationship">Relationship</MenuItem>
-                <MenuItem value="Religious change ">Religious change </MenuItem>
+                <MenuItem value="Religion ">Religion </MenuItem>
                 <MenuItem value="Academics">Academics</MenuItem>
               </Select>
             </FormControl>
