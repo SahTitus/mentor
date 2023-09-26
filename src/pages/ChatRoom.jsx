@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styles from "../styles/ChatRoom.module.css";
 import { Add, ArrowBack } from "@mui/icons-material";
 import React, { useEffect, useRef, useState } from "react";

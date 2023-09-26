@@ -15,6 +15,7 @@ import SeeMore from "./pages/SeeMore";
 import SearchPage from "./pages/SearchPage";
 import GroupDetails from "./pages/GroupDetails";
 import AddMembers from "./pages/AddMembers";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
             <Route path="/chats" element={<Chats />} />
 
             <Route path="/auth" element={<Auth />} />
+
+            <Route path="/register" element={<Register />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/addMentor" element={<CreateMentor />} />
             <Route path="/createMentee" element={<CreateMentee />} />

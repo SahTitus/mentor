@@ -2,8 +2,6 @@ import { ArrowBack } from "@mui/icons-material";
 import {
   Box,
   Button,
-  CircularProgress,
-  Dialog,
   FormControl,
   InputLabel,
   MenuItem,
@@ -86,6 +84,7 @@ const Auth = () => {
       });
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -193,8 +192,8 @@ const Auth = () => {
                           Career guidance
                         </MenuItem>
                         <MenuItem value="Relationship">Relationship</MenuItem>
-                        <MenuItem value="Religious change ">
-                          Religious change{" "}
+                        <MenuItem value="Religion">
+                          Religion
                         </MenuItem>
                         <MenuItem value="Academics">Academics</MenuItem>
                       </Select>

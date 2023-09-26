@@ -1,5 +1,5 @@
 import * as api from "../api/index.js";
-import { removeMentee, update } from "../redux/mentors.js";
+import { removeMentee, } from "../redux/mentors.js";
 import {
   isLoading,
   getNotifications,

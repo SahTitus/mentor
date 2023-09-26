@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ArrowBack, Edit } from "@mui/icons-material";
 import React, { useEffect } from "react";
 import styles from "../styles/Profile.module.css";

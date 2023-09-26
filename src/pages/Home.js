@@ -36,6 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!user?.result?._id) navigate("/auth");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const scrollRef = useRef();

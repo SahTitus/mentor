@@ -1,7 +1,5 @@
-import { Delete, Edit } from "@mui/icons-material";
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { PeopleFill } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useStateContex } from "../store/StateProvider";
 import styles from "../styles/Chat.module.css";

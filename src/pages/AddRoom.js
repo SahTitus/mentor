@@ -87,7 +87,7 @@ const AddRoom = () => {
       setGroupName(room.roomName);
       setImage(room.image);
     }
-  }, []);
+  }, [room]);
 
   return (
     <div className={styles.createMentor}>

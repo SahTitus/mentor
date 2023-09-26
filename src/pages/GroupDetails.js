@@ -33,6 +33,7 @@ const GroupDetails = () => {
     if (!user?.result?._id) navigate("/auth");
     dispatch(fetchRoom(id));
     dispatch(fetchUsers());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const [members, setMembers] = useState(

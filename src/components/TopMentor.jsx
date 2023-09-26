@@ -1,9 +1,9 @@
-import { Mail, MailOutline } from "@mui/icons-material";
+import { MailOutline } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import styles from "../styles/TopMentor.module.css";
 import React, { useState, useEffect } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStateContex } from "../store/StateProvider";
 import { PersonFill } from "react-bootstrap-icons";
